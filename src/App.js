@@ -1,5 +1,6 @@
 import React from 'react';
+import Item from "./containers/Item";
 
 export const App = () => {
-  return <h1>Hello, world!</h1>;
+  return <Item/>;
 };
