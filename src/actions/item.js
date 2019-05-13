@@ -19,11 +19,8 @@ export const inputPrice = price => ({
   }
 });
 
-let latestItemId = 3;
-
 export const addItem = formItem => ({
   type: 'ADD_ITEM',
-  createCount: latestItemId++,
   payload: {
     formItem
   }

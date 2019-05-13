@@ -1,4 +1,4 @@
-const initialState = {
+export const initialState = {
   formItem: {
     id: null,
     title: "",
@@ -28,7 +28,8 @@ const initialState = {
       price: 80,
       imagePath: ""
     },
-  ]
+  ],
+  createCount: 3
 };
 
 export const item = (state = initialState, action) => {
@@ -49,10 +50,11 @@ export const item = (state = initialState, action) => {
         formItem: {...state.formItem, price: Number(action.payload.price)}
       };
     case 'ADD_ITEM':
-      action.payload.formItem.id = action.createCount + 1;
+      action.payload.formItem.id = state.createCount + 1;
       return {
         ...state,
         items: state.items.concat([action.payload.formItem]),
+        createCount: state.createCount + 1,
         formItem: initialState.formItem
       };
     default:
