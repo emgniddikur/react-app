@@ -1,6 +1,6 @@
 import {initialState} from "../initialState";
 
-export const createItem = (state = initialState, action) => {
+export const createItemReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'INPUT_TITLE':
       return {

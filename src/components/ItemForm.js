@@ -12,5 +12,5 @@ export const ItemForm = ({formItem, inputTitle, inputDescription, inputPrice, ad
       <input id="price" type="text" value={formItem.price} onChange={e => inputPrice(e.target.value)}/><br/>
       <input type="button" value="新規作成" onClick={() => addItem(formItem)}/>
     </form>
-  )
+  );
 };
