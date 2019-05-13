@@ -3,10 +3,10 @@ import {render} from 'react-dom';
 import {applyMiddleware, createStore} from "redux";
 import {Provider} from 'react-redux';
 import logger from 'redux-logger';
-import {item} from './reducers/item';
+import {createItem} from './reducers/createItem';
 import {App} from './App';
 
-const store = createStore(item, applyMiddleware(logger));
+const store = createStore(createItem, applyMiddleware(logger));
 
 render(
   <Provider store={store}>
