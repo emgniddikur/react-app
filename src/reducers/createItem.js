@@ -1,38 +1,6 @@
-export const initialState = {
-  formItem: {
-    id: null,
-    title: "",
-    description: "",
-    price: "",
-    imagePath: ""
-  },
-  items: [
-    {
-      id: 1,
-      title: "りんご",
-      description: "りんごです。",
-      price: 100,
-      imagePath: ""
-    },
-    {
-      id: 2,
-      title: "ぶどう",
-      description: "ぶどうです。",
-      price: 120,
-      imagePath: ""
-    },
-    {
-      id: 3,
-      title: "みかん",
-      description: "みかんです。",
-      price: 80,
-      imagePath: ""
-    },
-  ],
-  createCount: 3
-};
+import {initialState} from "../initialState";
 
-export const item = (state = initialState, action) => {
+export const createItem = (state = initialState, action) => {
   switch (action.type) {
     case 'INPUT_TITLE':
       return {
