@@ -1,7 +1,7 @@
 const initialState = {
   formItem: {
-    id: "4",
-    title: "a",
+    id: "",
+    title: "",
     description: "",
     price: null,
     imagePath: ""
@@ -49,6 +49,7 @@ export const item = (state = initialState, action) => {
         formItem: Object.assign(state.formItem, {price: action.payload.price})
       };
     case 'ADD_ITEM':
+      action.payload.formItem.id = action.formItemId;
       return {
         ...state,
         items: state.items.concat([action.payload.formItem])
