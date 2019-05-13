@@ -1,9 +1,9 @@
 const initialState = {
   formItem: {
-    id: "",
+    id: null,
     title: "",
     description: "",
-    price: null,
+    price: "",
     imagePath: ""
   },
   items: [
@@ -36,23 +36,24 @@ export const item = (state = initialState, action) => {
     case 'INPUT_TITLE':
       return {
         ...state,
-        formItem: Object.assign(state.formItem, {title: action.payload.title})
+        formItem: {...state.formItem, title: action.payload.title}
       };
     case 'INPUT_DESCRIPTION':
       return {
         ...state,
-        formItem: Object.assign(state.formItem, {description: action.payload.description})
+        formItem: {...state.formItem, description: action.payload.description}
       };
     case 'INPUT_PRICE':
       return {
         ...state,
-        formItem: Object.assign(state.formItem, {price: action.payload.price})
+        formItem: {...state.formItem, price: Number(action.payload.price)}
       };
     case 'ADD_ITEM':
-      action.payload.formItem.id = action.formItemId;
+      action.payload.formItem.id = action.createCount + 1;
       return {
         ...state,
-        items: state.items.concat([action.payload.formItem])
+        items: state.items.concat([action.payload.formItem]),
+        formItem: initialState.formItem
       };
     default:
       return state;

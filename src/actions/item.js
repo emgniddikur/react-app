@@ -23,7 +23,7 @@ let latestItemId = 3;
 
 export const addItem = formItem => ({
   type: 'ADD_ITEM',
-  formItemId: ++latestItemId,
+  createCount: latestItemId++,
   payload: {
     formItem
   }
