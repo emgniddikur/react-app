@@ -3,6 +3,6 @@ import {ItemList} from "../components/ItemList";
 
 export default connect(
   state => ({
-    items: state.items
+    items: state.createItemReducer.items
   })
 )(ItemList);
