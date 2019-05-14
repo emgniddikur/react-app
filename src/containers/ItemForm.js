@@ -4,7 +4,7 @@ import {ItemForm} from "../components/ItemForm";
 
 export default connect(
   state => ({
-    formItem: state.createItemReducer.formItem
+    formItem: state.itemReducer.formItem
   }),
   {inputTitle, inputDescription, inputPrice, addItem}
 )(ItemForm);
