@@ -16,6 +16,12 @@ export const Main = () => {
             ({match}) => <Item itemId={match.params.id}/>
           }
         />
+        <Route
+          exact path="/:id/edit"
+          render={
+            ({match}) => <ItemForm itemId={match.params.id}/>
+          }
+        />
       </Switch>
     </main>
   );

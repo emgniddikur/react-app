@@ -1,10 +1,11 @@
 import {connect} from "react-redux";
-import {addItem, inputDescription, inputPrice, inputTitle} from "../actions/createItemActionCreators";
+import {createItem, inputDescription, inputPrice, inputTitle, updateItem} from "../actions/itemActionCreators";
 import {ItemForm} from "../components/ItemForm";
 
 export default connect(
   state => ({
-    formItem: state.itemReducer.formItem
+    formItem: state.itemReducer.formItem,
+    items: state.itemReducer.items
   }),
-  {inputTitle, inputDescription, inputPrice, addItem}
+  {inputTitle, inputDescription, inputPrice, createItem, updateItem}
 )(ItemForm);

@@ -8,10 +8,7 @@ export const ItemList = ({items}) => {
         items.map(item => {
           return (
             <li key={item.id}>
-              <Link to={{
-                pathname: "/" + item.id,
-                itemId: item.id
-              }}>
+              <Link to={"/" + item.id}>
                 {item.title}
               </Link>
             </li>
