@@ -6,7 +6,7 @@ import {routerMiddleware, routerReducer} from "react-router-redux";
 export const createStore = (history) => {
   return reduxCreateStore(
     combineReducers({
-      createItemReducer: itemReducer,
+      itemReducer: itemReducer,
       routerReducer: routerReducer,
     }),
     applyMiddleware(

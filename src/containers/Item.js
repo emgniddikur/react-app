@@ -1,10 +1,10 @@
 import {connect} from "react-redux";
-import {removeItem} from "../actions/removeItemActionCreator";
+import {removeItem} from "../actions/deleteItemActionCreator";
 import {Item} from "../components/Item";
 
 export default connect(
   state => ({
-    items: state.createItemReducer.items
+    items: state.itemReducer.items
   }),
   {removeItem}
 )(Item);
