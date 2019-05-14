@@ -1,5 +1,5 @@
 import {initialState} from "./initialState";
-import {ADD_ITEM, INPUT_DESCRIPTION, INPUT_PRICE, INPUT_TITLE, REMOVE_ITEM} from "../constants";
+import {CREATE_ITEM, DELETE_ITEM, INPUT_DESCRIPTION, INPUT_PRICE, INPUT_TITLE, UPDATE_ITEM} from "../constants";
 
 export const itemReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -18,7 +18,7 @@ export const itemReducer = (state = initialState, action) => {
         ...state,
         formItem: {...state.formItem, price: Number(action.payload.price)}
       };
-    case ADD_ITEM:
+    case CREATE_ITEM:
       action.payload.formItem.id = state.createCount + 1;
       return {
         ...state,
@@ -26,11 +26,19 @@ export const itemReducer = (state = initialState, action) => {
         createCount: state.createCount + 1,
         formItem: initialState.formItem
       };
-    case REMOVE_ITEM:
-      const items = state.items.filter(e => e.id !== Number(action.payload.id));
+    case UPDATE_ITEM:
+      const id = Number(action.payload.id);
+      action.payload.formItem.id = id;
+      const items = state.items.filter(e => e.id !== id);
       return {
         ...state,
-        items: items
+        items: items.concat([action.payload.formItem]),
+        formItem: initialState.formItem
+      };
+    case DELETE_ITEM:
+      return {
+        ...state,
+        items: state.items.filter(e => e.id !== Number(action.payload.id))
       };
     default:
       return state;
