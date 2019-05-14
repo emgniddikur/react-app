@@ -1,8 +1,8 @@
 import {connect} from "react-redux";
-import {ItemList} from "../components/ItemList";
+import {Item} from "../components/Item";
 
 export default connect(
   state => ({
     items: state.createItemReducer.items
   }),
-)(ItemList);
+)(Item);
