@@ -4,11 +4,9 @@ import {render} from 'react-dom';
 import React, {Fragment} from 'react';
 import {Provider} from 'react-redux';
 import {ConnectedRouter} from "react-router-redux";
-import {Route, Switch} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {Header} from "./containers/Header";
-import ItemList from "./containers/ItemList";
-import Item from "./containers/Item";
-import ItemForm from "./containers/ItemForm";
+import {Main} from "./containers/Main";
 
 const history = createBrowserHistory();
 
@@ -19,16 +17,7 @@ render(
     <ConnectedRouter history={history}>
       <Fragment>
         <Route path="/" component={Header}/>
-        <Switch>
-          <Route exact path="/" component={ItemList}/>
-          <Route exact path="/new" component={ItemForm}/>
-          <Route
-            exact path="/:id"
-            render={
-              ({match}) => <Item itemId={match.params.id}/>
-            }
-          />
-        </Switch>
+        <Main/>
       </Fragment>
     </ConnectedRouter>
   </Provider>,
