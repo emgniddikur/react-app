@@ -9,6 +9,10 @@ import {
   UPDATE_ITEM
 } from "../constants";
 
+const priceToNumber = price => {
+  return price === "" ? price : Number(price);
+};
+
 export const itemReducer = (state = initialState, action) => {
   switch (action.type) {
     case INPUT_TITLE:
@@ -32,7 +36,7 @@ export const itemReducer = (state = initialState, action) => {
         ...state,
         formItem: {
           ...state.formItem,
-          price: Number(action.payload.price)
+          price: action.payload.price
         }
       };
     case INPUT_ITEM:
@@ -47,6 +51,7 @@ export const itemReducer = (state = initialState, action) => {
       };
     case CREATE_ITEM:
       action.payload.formItem.id = state.createCount + 1;
+      action.payload.formItem.price = priceToNumber(action.payload.formItem.price);
       return {
         ...state,
         items: state.items.concat([action.payload.formItem]),
@@ -56,6 +61,7 @@ export const itemReducer = (state = initialState, action) => {
     case UPDATE_ITEM:
       const id = Number(action.payload.id);
       action.payload.formItem.id = id;
+      action.payload.formItem.price = priceToNumber(action.payload.formItem.price);
       const items = state.items.filter(e => e.id !== id);
       return {
         ...state,

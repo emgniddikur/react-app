@@ -8,7 +8,7 @@ export class ItemForm extends Component {
       const item = this.props.items.find(e => e.id === Number(this.props.itemId));
       this.props.inputItem(item.title, item.description, item.price);
     } else {
-      this.props.inputItem("", "", 0);
+      this.props.inputItem("", "", "");
     }
   }
 

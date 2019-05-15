@@ -3,7 +3,7 @@ export const initialState = {
     id: null,
     title: "",
     description: "",
-    price: 0
+    price: ""
   },
   items: [
     {
