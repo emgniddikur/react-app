@@ -1,7 +1,9 @@
-import {applyMiddleware, combineReducers, createStore as reduxCreateStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore as reduxCreateStore} from "redux";
 import {itemReducer} from "../reducers/itemReducer";
 import {logger} from "redux-logger/src";
 import {routerMiddleware, routerReducer} from "react-router-redux";
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const createStore = (history) => {
   return reduxCreateStore(
@@ -9,9 +11,11 @@ export const createStore = (history) => {
       itemReducer: itemReducer,
       routerReducer: routerReducer,
     }),
-    applyMiddleware(
-      logger,
-      routerMiddleware(history)
+    composeEnhancers(
+      applyMiddleware(
+        logger,
+        routerMiddleware(history)
+      )
     )
   );
 };
