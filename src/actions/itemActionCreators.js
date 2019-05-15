@@ -1,4 +1,12 @@
-import {CREATE_ITEM, DELETE_ITEM, INPUT_DESCRIPTION, INPUT_PRICE, INPUT_TITLE, UPDATE_ITEM} from "../constants";
+import {
+  CREATE_ITEM,
+  DELETE_ITEM,
+  INPUT_DESCRIPTION,
+  INPUT_ITEM,
+  INPUT_PRICE,
+  INPUT_TITLE,
+  UPDATE_ITEM
+} from "../constants";
 
 export const inputTitle = title => ({
   type: INPUT_TITLE,
@@ -18,6 +26,15 @@ export const inputPrice = price => ({
   type: INPUT_PRICE,
   payload: {
     price
+  }
+});
+
+export const inputItem = (title, description, price) => ({
+  type: INPUT_ITEM,
+  payload: {
+    title: title,
+    description: description,
+    price: price
   }
 });
 

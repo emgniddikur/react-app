@@ -6,13 +6,9 @@ export class ItemForm extends Component {
     super(props);
     if (this.props.itemId) {
       const item = this.props.items.find(e => e.id === Number(this.props.itemId));
-      this.props.inputTitle(item.title);
-      this.props.inputDescription(item.description);
-      this.props.inputPrice(item.price);
+      this.props.inputItem(item.title, item.description, item.price);
     } else {
-      this.props.inputTitle("");
-      this.props.inputDescription("");
-      this.props.inputPrice(0);
+      this.props.inputItem("", "", 0);
     }
   }
 
@@ -36,7 +32,7 @@ export class ItemForm extends Component {
         <input id="price" type="text" value={this.props.formItem.price}
                onChange={e => this.props.inputPrice(e.target.value)}/><br/>
         <Link to="/">
-          <input type="button" value="新規作成" onClick={this.handleClick}/>
+          <input type="button" value={!this.props.itemId ? "新規登録" : "更新"} onClick={this.handleClick}/>
         </Link>
       </form>
     );
