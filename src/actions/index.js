@@ -29,12 +29,12 @@ export const inputPrice = price => ({
   }
 });
 
-export const inputItem = (title, description, price) => ({
+export const inputItem = (item) => ({
   type: INPUT_ITEM,
   payload: {
-    title: title,
-    description: description,
-    price: price
+    title: item.title,
+    description: item.description,
+    price: item.price
   }
 });
 
