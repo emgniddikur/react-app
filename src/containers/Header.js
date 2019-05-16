@@ -6,6 +6,7 @@ export const Header = () => {
     <header>
       <Link to="/">商品リスト</Link>
       <Link to="/new">新規登録</Link>
+      <Link to="/search">検索ページへ</Link>
     </header>
   );
 };

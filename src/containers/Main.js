@@ -1,8 +1,9 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
-import ItemList from "../containers/ItemList";
-import ItemForm from "../containers/ItemForm";
-import Item from "../containers/Item";
+import ItemList from "./ItemList";
+import ItemForm from "./ItemForm";
+import Item from "./Item";
+import Search from "./Search";
 
 export const Main = () => {
   return (
@@ -10,6 +11,12 @@ export const Main = () => {
       <Switch>
         <Route exact path="/" component={ItemList}/>
         <Route exact path="/new" component={ItemForm}/>
+        <Route
+          exact path="/search"
+          render={
+            ({location, history}) => <Search keyword={location.keyword} history={history}/>
+          }
+        />
         <Route
           exact path="/:id"
           render={
