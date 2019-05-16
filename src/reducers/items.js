@@ -1,4 +1,4 @@
-import {initialState} from "./initialState";
+import {initialState} from "../initialState";
 import {
   CREATE_ITEM,
   DELETE_ITEM,
@@ -13,7 +13,7 @@ const priceToNumber = price => {
   return price === "" ? price : Number(price);
 };
 
-export const itemReducer = (state = initialState, action) => {
+export const items = (state = initialState, action) => {
   switch (action.type) {
     case INPUT_TITLE:
       return {
