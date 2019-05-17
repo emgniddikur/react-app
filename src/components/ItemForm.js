@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from "react-router-dom";
 
 export const ItemForm = ({itemId, updateItem, formItem, createItem, history, inputTitle, inputDescription, inputPrice}) => {
   const handleClick = (e) => {
@@ -19,9 +18,7 @@ export const ItemForm = ({itemId, updateItem, formItem, createItem, history, inp
       <label htmlFor="price">価格</label>
       <input id="price" type="text" value={formItem.price}
              onChange={e => inputPrice(e.target.value)}/><br/>
-      <Link to="/">
-        <input type="button" value={itemId ? "更新" : "新規登録"} onClick={(e) => handleClick(e)}/>
-      </Link>
+      <input type="button" value={itemId ? "更新" : "新規登録"} onClick={(e) => handleClick(e)}/>
     </form>
   );
 };
