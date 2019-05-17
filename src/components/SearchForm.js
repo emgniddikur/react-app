@@ -6,7 +6,6 @@ export const SearchForm = ({history}) => {
   const handleClick = (e, input) => {
     e.preventDefault();
     history.push({
-      pathname: "/search",
       keyword: input
     });
   };
