@@ -1,10 +1,10 @@
 import React, {Fragment} from 'react';
 import {Route, Switch} from "react-router-dom";
-import {Nav} from "../components/Nav";
-import ItemList from "../containers/ItemList";
+import {Nav} from "./Nav";
+import Index from "./Index";
 import New from "./New";
 import Search from "./Search";
-import Item from "../containers/Item";
+import Show from "./Show";
 import Edit from "../containers/Edit";
 
 export const App = () => {
@@ -15,7 +15,7 @@ export const App = () => {
       </nav>
       <main>
         <Switch>
-          <Route exact path="/" component={ItemList}/>
+          <Route exact path="/" component={Index}/>
           <Route
             exact path="/new"
             render={
@@ -31,7 +31,7 @@ export const App = () => {
           <Route
             exact path="/:id"
             render={
-              ({match}) => <Item itemId={match.params.id}/>
+              ({match}) => <Show itemId={match.params.id}/>
             }
           />
           <Route
