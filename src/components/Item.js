@@ -1,13 +1,8 @@
 import React, {Fragment} from 'react';
-import {Link} from "react-router-dom";
 
-export const Item = ({items, itemId, deleteItem}) => {
-  const item = items.find(e => e.id === Number(itemId));
-
+export const Item = ({item}) => {
   return (
     <Fragment>
-      <Link to={"/" + itemId + "/edit"}>編集</Link>
-      <Link to="/" onClick={() => deleteItem(itemId)}>削除</Link>
       <table>
         <tbody>
         <tr>
