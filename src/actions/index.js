@@ -3,6 +3,7 @@ import {
   DELETE_ITEM,
   INPUT_DESCRIPTION,
   INPUT_IMAGE_SRC,
+  INPUT_ITEM,
   INPUT_PRICE,
   INPUT_TITLE,
   UPDATE_ITEM
@@ -33,6 +34,13 @@ export const inputImageSrc = imageSrc => ({
   type: INPUT_IMAGE_SRC,
   payload: {
     imageSrc
+  }
+});
+
+export const inputItem = item => ({
+  type: INPUT_ITEM,
+  payload: {
+    item
   }
 });
 

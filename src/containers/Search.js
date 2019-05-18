@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {SearchForm} from "../components/SearchForm";
 import {ItemList} from "../components/ItemList";
 
-const Search = ({items, keyword, history}) => {
+const Search = ({keyword, history, items}) => {
   const searchResult = items.filter(e => e.title === keyword);
 
   return (

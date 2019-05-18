@@ -4,6 +4,7 @@ import {
   DELETE_ITEM,
   INPUT_DESCRIPTION,
   INPUT_IMAGE_SRC,
+  INPUT_ITEM,
   INPUT_PRICE,
   INPUT_TITLE,
   UPDATE_ITEM
@@ -41,6 +42,16 @@ export const items = (state = initialState, action) => {
         formItem: {
           ...state.formItem,
           imageSrc: action.payload.imageSrc
+        }
+      };
+    case INPUT_ITEM:
+      return {
+        ...state,
+        formItem: {
+          title: action.payload.item.title,
+          description: action.payload.item.description,
+          price: action.payload.item.price,
+          imageSrc: action.payload.item.image
         }
       };
     case CREATE_ITEM:
