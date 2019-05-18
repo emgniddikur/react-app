@@ -2,7 +2,7 @@ import {
   CREATE_ITEM,
   DELETE_ITEM,
   INPUT_DESCRIPTION,
-  INPUT_ITEM,
+  INPUT_IMAGE_SRC,
   INPUT_PRICE,
   INPUT_TITLE,
   UPDATE_ITEM
@@ -25,16 +25,14 @@ export const inputDescription = description => ({
 export const inputPrice = price => ({
   type: INPUT_PRICE,
   payload: {
-    price
+    price: Number(price)
   }
 });
 
-export const inputItem = (item) => ({
-  type: INPUT_ITEM,
+export const inputImageSrc = imageSrc => ({
+  type: INPUT_IMAGE_SRC,
   payload: {
-    title: item.title,
-    description: item.description,
-    price: item.price
+    imageSrc
   }
 });
 
@@ -48,7 +46,7 @@ export const createItem = formItem => ({
 export const updateItem = (id, formItem) => ({
   type: UPDATE_ITEM,
   payload: {
-    id: id,
+    id: Number(id),
     formItem: formItem
   }
 });
@@ -56,6 +54,6 @@ export const updateItem = (id, formItem) => ({
 export const deleteItem = id => ({
   type: DELETE_ITEM,
   payload: {
-    id
+    id: Number(id)
   }
 });

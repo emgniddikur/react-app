@@ -3,10 +3,10 @@ import React from 'react';
 export const SearchForm = ({history}) => {
   let input;
 
-  const handleClick = (e, input) => {
+  const handleClick = e => {
     e.preventDefault();
     history.push({
-      keyword: input
+      keyword: input.value
     });
   };
 
@@ -14,7 +14,7 @@ export const SearchForm = ({history}) => {
     <form>
       <label htmlFor="keyword">キーワード</label>
       <input id="keyword" type="text" ref={node => input = node}/>
-      <button type="submit" onClick={(e) => handleClick(e, input.value)}>検索</button>
+      <button type="button" onClick={e => handleClick(e)}>検索</button>
     </form>
   );
 };

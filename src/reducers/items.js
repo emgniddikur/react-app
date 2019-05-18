@@ -3,15 +3,11 @@ import {
   CREATE_ITEM,
   DELETE_ITEM,
   INPUT_DESCRIPTION,
-  INPUT_ITEM,
+  INPUT_IMAGE_SRC,
   INPUT_PRICE,
   INPUT_TITLE,
   UPDATE_ITEM
 } from "../constants";
-
-const priceToNumber = price => {
-  return price === "" ? price : Number(price);
-};
 
 export const items = (state = initialState, action) => {
   switch (action.type) {
@@ -39,19 +35,16 @@ export const items = (state = initialState, action) => {
           price: action.payload.price
         }
       };
-    case INPUT_ITEM:
+    case INPUT_IMAGE_SRC:
       return {
         ...state,
         formItem: {
           ...state.formItem,
-          title: action.payload.title,
-          description: action.payload.description,
-          price: action.payload.price
+          imageSrc: action.payload.imageSrc
         }
       };
     case CREATE_ITEM:
       action.payload.formItem.id = state.createCount + 1;
-      action.payload.formItem.price = priceToNumber(action.payload.formItem.price);
       return {
         ...state,
         items: state.items.concat([action.payload.formItem]),
@@ -59,19 +52,18 @@ export const items = (state = initialState, action) => {
         formItem: initialState.formItem
       };
     case UPDATE_ITEM:
-      const id = Number(action.payload.id);
-      action.payload.formItem.id = id;
-      action.payload.formItem.price = priceToNumber(action.payload.formItem.price);
-      const items = state.items.filter(e => e.id !== id);
+      action.payload.formItem.id = action.payload.id;
       return {
         ...state,
-        items: items.concat([action.payload.formItem]),
+        items: state.items
+          .filter(e => e.id !== action.payload.id)
+          .concat([action.payload.formItem]),
         formItem: initialState.formItem
       };
     case DELETE_ITEM:
       return {
         ...state,
-        items: state.items.filter(e => e.id !== Number(action.payload.id))
+        items: state.items.filter(e => e.id !== action.payload.id)
       };
     default:
       return state;

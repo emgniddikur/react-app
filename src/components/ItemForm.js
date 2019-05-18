@@ -1,7 +1,16 @@
 import React from 'react';
 
-export const ItemForm = ({itemId, updateItem, formItem, createItem, history, inputTitle, inputDescription, inputPrice}) => {
-  const handleClick = (e) => {
+export const ItemForm = ({itemId, updateItem, formItem, createItem, history, inputTitle, inputDescription, inputPrice, inputImageSrc}) => {
+  const handleFileChange = e => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      inputImageSrc(e.target.result);
+      document.getElementById("image").innerHTML = `<img src="${e.target.result}"/>`;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  const handleClick = e => {
     e.preventDefault();
     itemId ? updateItem(itemId, formItem) : createItem(formItem);
     history.push("/");
@@ -18,7 +27,10 @@ export const ItemForm = ({itemId, updateItem, formItem, createItem, history, inp
       <label htmlFor="price">価格</label>
       <input id="price" type="text" value={formItem.price}
              onChange={e => inputPrice(e.target.value)}/><br/>
-      <input type="button" value={itemId ? "更新" : "新規登録"} onClick={(e) => handleClick(e)}/>
+      <label htmlFor="image-src">商品画像</label>
+      <input id="image-src" type="file" onChange={e => handleFileChange(e)}/><br/>
+      <output id="image"/>
+      <input type="button" value={itemId ? "更新" : "新規登録"} onClick={e => handleClick(e)}/>
     </form>
   );
 };
