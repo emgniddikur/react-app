@@ -7,14 +7,18 @@ export const Item = ({item}) => {
         <tbody>
         <tr>
           <td>商品タイトル</td>
-          <td>商品説明</td>
-          <td>価格</td>
-          <td>商品画像</td>
+          <td>{item.title}</td>
         </tr>
         <tr>
-          <td>{item.title}</td>
+          <td>商品説明</td>
           <td>{item.description}</td>
+        </tr>
+        <tr>
+          <td>価格</td>
           <td>{item.price}</td>
+        </tr>
+        <tr>
+          <td>商品画像</td>
           <td><img src={item.imageSrc} alt="商品画像"/></td>
         </tr>
         </tbody>
