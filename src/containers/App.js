@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
-import {Route, Switch} from "react-router-dom";
 import {Nav} from "./Nav";
+import {Route, Switch} from "react-router-dom";
 import Index from "./Index";
 import New from "./New";
 import Search from "./Search";

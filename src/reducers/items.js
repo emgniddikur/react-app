@@ -51,7 +51,7 @@ export const items = (state = initialState, action) => {
           title: action.payload.item.title,
           description: action.payload.item.description,
           price: action.payload.item.price,
-          imageSrc: action.payload.item.image
+          imageSrc: action.payload.item.imageSrc
         }
       };
     case CREATE_ITEM:

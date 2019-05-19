@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, compose, createStore as reduxCreateStore} from "redux";
 import {items} from "../reducers/items";
-import {logger} from "redux-logger/src";
 import {routerMiddleware, routerReducer} from "react-router-redux";
+import {logger} from "redux-logger/src";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
