@@ -48,6 +48,7 @@ export const items = (state = initialState, action) => {
       return {
         ...state,
         formItem: {
+          ...state.formItem,
           title: action.payload.item.title,
           description: action.payload.item.description,
           price: action.payload.item.price,
