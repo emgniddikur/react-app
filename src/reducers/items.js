@@ -1,4 +1,4 @@
-import {initialState} from "../initialState";
+import {initialState} from "./initialState";
 import {
   CREATE_ITEM,
   DELETE_ITEM,
@@ -7,11 +7,17 @@ import {
   INPUT_ITEM,
   INPUT_PRICE,
   INPUT_TITLE,
+  SET_ITEMS,
   UPDATE_ITEM
-} from "../constants";
+} from "../constants/index";
 
 export const items = (state = initialState, action) => {
   switch (action.type) {
+    case SET_ITEMS:
+      return {
+        ...state,
+        items: action.payload.items
+      };
     case INPUT_TITLE:
       return {
         ...state,
@@ -56,15 +62,12 @@ export const items = (state = initialState, action) => {
         }
       };
     case CREATE_ITEM:
-      action.payload.formItem.id = state.createCount + 1;
       return {
         ...state,
         items: state.items.concat([action.payload.formItem]),
-        createCount: state.createCount + 1,
         formItem: initialState.formItem
       };
     case UPDATE_ITEM:
-      action.payload.formItem.id = action.payload.id;
       return {
         ...state,
         items: state.items
