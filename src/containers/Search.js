@@ -16,6 +16,6 @@ const Search = ({keyword, history, items}) => {
 
 export default connect(
   state => ({
-    items: state.itemReducer.items,
+    items: state.itemReducer.items
   })
 )(Search);

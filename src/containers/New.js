@@ -12,15 +12,24 @@ class New extends Component {
   }
 
   render() {
+    const {
+      history,
+      formItem,
+      inputTitle,
+      inputDescription,
+      inputPrice,
+      inputImageSrc,
+      createRequest
+    } = this.props;
     return (
       <ItemForm
-        history={this.props.history}
-        formItem={this.props.formItem}
-        inputTitle={this.props.inputTitle}
-        inputDescription={this.props.inputDescription}
-        inputPrice={this.props.inputPrice}
-        inputImageSrc={this.props.inputImageSrc}
-        createRequest={this.props.createRequest}
+        history={history}
+        formItem={formItem}
+        inputTitle={inputTitle}
+        inputDescription={inputDescription}
+        inputPrice={inputPrice}
+        inputImageSrc={inputImageSrc}
+        createRequest={createRequest}
       />
     );
   }
@@ -28,8 +37,7 @@ class New extends Component {
 
 export default connect(
   state => ({
-    formItem: state.itemReducer.formItem,
-    initialItem: state.itemReducer.initialItem
+    formItem: state.itemReducer.formItem
   }),
   {inputTitle, inputDescription, inputPrice, inputImageSrc, inputItem, createRequest}
 )(New);
