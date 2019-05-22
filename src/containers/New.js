@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
+import {initialState} from "../reducers/initialState";
 import {ItemForm} from "../components/ItemForm";
 import {connect} from "react-redux";
-import {createItem, inputDescription, inputImageSrc, inputItem, inputPrice, inputTitle} from "../actions";
+import {inputDescription, inputImageSrc, inputItem, inputPrice, inputTitle} from "../actions/index";
+import {createRequest} from "../actions/requests";
 
 class New extends Component {
   constructor(props) {
     super(props);
-    this.props.inputItem(this.props.initialItem);
+    this.props.inputItem(initialState.formItem);
   }
 
   render() {
@@ -18,7 +20,7 @@ class New extends Component {
         inputDescription={this.props.inputDescription}
         inputPrice={this.props.inputPrice}
         inputImageSrc={this.props.inputImageSrc}
-        createItem={this.props.createItem}
+        createRequest={this.props.createRequest}
       />
     );
   }
@@ -29,5 +31,5 @@ export default connect(
     formItem: state.itemReducer.formItem,
     initialItem: state.itemReducer.initialItem
   }),
-  {inputTitle, inputDescription, inputPrice, inputImageSrc, inputItem, createItem}
+  {inputTitle, inputDescription, inputPrice, inputImageSrc, inputItem, createRequest}
 )(New);

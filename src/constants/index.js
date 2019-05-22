@@ -1,3 +1,4 @@
+export const SET_ITEMS = 'SET_ITEMS';
 export const INPUT_TITLE = 'INPUT_TITLE';
 export const INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
 export const INPUT_PRICE = 'INPUT_PRICE';

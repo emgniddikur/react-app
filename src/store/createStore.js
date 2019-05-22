@@ -9,7 +9,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();
 
-export const createStore = (history) => {
+export const createStore = history => {
   const store = reduxCreateStore(
     combineReducers({
       itemReducer: items,

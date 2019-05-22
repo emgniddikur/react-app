@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {ItemForm} from "../components/ItemForm";
 import {connect} from "react-redux";
-import {inputDescription, inputImageSrc, inputItem, inputPrice, inputTitle, updateItem} from "../actions";
+import {inputDescription, inputImageSrc, inputItem, inputPrice, inputTitle} from "../actions/index";
+import {updateRequest} from "../actions/requests";
 
 class Edit extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class Edit extends Component {
         inputDescription={this.props.inputDescription}
         inputPrice={this.props.inputPrice}
         inputImageSrc={this.props.inputImageSrc}
-        updateItem={this.props.updateItem}
+        updateRequest={this.props.updateRequest}
       />
     );
   }
@@ -30,5 +31,5 @@ export default connect(
     formItem: state.itemReducer.formItem,
     items: state.itemReducer.items
   }),
-  {inputTitle, inputDescription, inputPrice, inputImageSrc, inputItem, updateItem}
+  {inputTitle, inputDescription, inputPrice, inputImageSrc, inputItem, updateRequest}
 )(Edit);
