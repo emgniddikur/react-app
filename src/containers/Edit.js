@@ -7,20 +7,31 @@ import {updateRequest} from "../actions/requests";
 class Edit extends Component {
   constructor(props) {
     super(props);
-    this.props.inputItem(this.props.items.find(e => e.id === Number(this.props.itemId)));
+    const {inputItem, items, itemId} = this.props;
+    inputItem(items.find(e => e.id === Number(itemId)));
   }
 
   render() {
+    const {
+      itemId,
+      history,
+      formItem,
+      inputTitle,
+      inputDescription,
+      inputPrice,
+      inputImageSrc,
+      updateRequest
+    } = this.props;
     return (
       <ItemForm
-        itemId={this.props.itemId}
-        history={this.props.history}
-        formItem={this.props.formItem}
-        inputTitle={this.props.inputTitle}
-        inputDescription={this.props.inputDescription}
-        inputPrice={this.props.inputPrice}
-        inputImageSrc={this.props.inputImageSrc}
-        updateRequest={this.props.updateRequest}
+        itemId={itemId}
+        history={history}
+        formItem={formItem}
+        inputTitle={inputTitle}
+        inputDescription={inputDescription}
+        inputPrice={inputPrice}
+        inputImageSrc={inputImageSrc}
+        updateRequest={updateRequest}
       />
     );
   }
