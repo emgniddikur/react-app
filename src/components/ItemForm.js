@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ItemForm = ({itemId, history, formItem, inputTitle, inputDescription, inputPrice, inputImageSrc, updateRequest, createRequest}) => {
+export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputPrice, inputImageSrc, updateRequest, createRequest}) => {
   const handleFileChange = e => {
     const reader = new FileReader();
     reader.onload = e => {
@@ -13,7 +13,6 @@ export const ItemForm = ({itemId, history, formItem, inputTitle, inputDescriptio
   const handleClick = e => {
     e.preventDefault();
     itemId ? updateRequest(itemId, formItem) : createRequest(formItem);
-    history.push("/");
   };
 
   return (

@@ -7,8 +7,8 @@ import {deleteRequest} from "../actions/requests";
 const Show = ({itemId, items, deleteRequest}) => {
   return (
     <Fragment>
-      <Link to={"/" + itemId + "/edit"}>編集</Link>
-      <Link to="/" onClick={() => deleteRequest(itemId)}>削除</Link>
+      <Link to={`/items/${itemId}/edit`}>編集</Link>
+      <button onClick={() => deleteRequest(itemId)}>削除</button>
       <Item item={items.find(e => e.id === Number(itemId))}/>
     </Fragment>
   );
