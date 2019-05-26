@@ -1,46 +1,62 @@
-import axios from "axios";
+import axios from 'axios';
 
 const baseUrl = 'http://localhost:8080/api/items';
 
-export const fetchIndex = () => {
+export const fetchIndex = authToken => {
   return axios
-    .get(baseUrl)
+    .get(baseUrl, {
+      headers: {
+        'authToken': authToken
+      }
+    })
     .then(response => {
-      const result = response.data;
-      return {result};
+      const data = response.data;
+      return {data};
     })
     .catch(error => {
       return {error};
     });
 };
 
-export const fetchCreate = item => {
+export const fetchCreate = (authToken, item) => {
   return axios
-    .post(baseUrl, item)
+    .post(baseUrl, item, {
+      headers: {
+        'authToken': authToken
+      }
+    })
     .then(response => {
-      const result = response.data;
-      return {result};
+      const data = response.data;
+      return {data};
     })
     .catch(error => {
       return {error};
     });
 };
 
-export const fetchUpdate = (id, item) => {
+export const fetchUpdate = (id, authToken, item) => {
   return axios
-    .put(`${baseUrl}/${id}`, item)
+    .put(`${baseUrl}/${id}`, item, {
+      headers: {
+        'authToken': authToken
+      }
+    })
     .then(response => {
-      const result = response.data;
-      return {id, result};
+      const data = response.data;
+      return {id, data};
     })
     .catch(error => {
       return {error};
     });
 };
 
-export const fetchDelete = id => {
+export const fetchDelete = (id, authToken) => {
   return axios
-    .delete(`${baseUrl}/${id}`)
+    .delete(`${baseUrl}/${id}`, {
+      headers: {
+        'authToken': authToken
+      }
+    })
     .then(() => {
       return {id};
     })

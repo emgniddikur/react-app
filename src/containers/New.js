@@ -13,7 +13,6 @@ class New extends Component {
 
   render() {
     const {
-      history,
       formItem,
       inputTitle,
       inputDescription,
@@ -23,7 +22,6 @@ class New extends Component {
     } = this.props;
     return (
       <ItemForm
-        history={history}
         formItem={formItem}
         inputTitle={inputTitle}
         inputDescription={inputDescription}

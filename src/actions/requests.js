@@ -1,4 +1,11 @@
-import {CREATE_REQUEST, DELETE_REQUEST, UPDATE_REQUEST} from "../constants/requests";
+import {AUTHENTICATION_REQUEST, CREATE_REQUEST, DELETE_REQUEST, UPDATE_REQUEST} from "../constants/requests";
+
+export const authenticationRequest = authToken => ({
+  type: AUTHENTICATION_REQUEST,
+  payload: {
+    authToken
+  }
+});
 
 export const createRequest = formItem => ({
   type: CREATE_REQUEST,

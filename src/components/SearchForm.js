@@ -14,7 +14,7 @@ export const SearchForm = ({history}) => {
     <form>
       <label htmlFor="keyword">キーワード</label>
       <input id="keyword" type="text" ref={node => input = node}/>
-      <button type="button" onClick={e => handleClick(e)}>検索</button>
+      <input type="button" value="検索" onClick={e => handleClick(e)}/>
     </form>
   );
 };

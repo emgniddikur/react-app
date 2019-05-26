@@ -14,7 +14,6 @@ class Edit extends Component {
   render() {
     const {
       itemId,
-      history,
       formItem,
       inputTitle,
       inputDescription,
@@ -25,7 +24,6 @@ class Edit extends Component {
     return (
       <ItemForm
         itemId={itemId}
-        history={history}
         formItem={formItem}
         inputTitle={inputTitle}
         inputDescription={inputDescription}
