@@ -5,6 +5,7 @@ import {
   CREATE_REQUEST,
   DELETE_REQUEST,
   INDEX_REQUEST,
+  SEARCH_REQUEST,
   SHOW_REQUEST,
   UPDATE_REQUEST
 } from "../constants/requests";
@@ -12,6 +13,18 @@ import * as API from "../api/api";
 import {createItem, deleteItem, setItem, setItems, updateItem} from "../actions";
 import {addAuthToken} from "../actions/authToken";
 import {getAuthToken} from "../selectors/index";
+
+function* runSearchRequest(action) {
+  try {
+    const keyword = action.payload.keyword;
+    const authToken = yield select(getAuthToken);
+    const {data} = yield call(API.fetchSearch, keyword, authToken);
+    yield put(setItems(data));
+    yield put(push(`/items/search?keyword=${keyword}`));
+  } catch (e) {
+
+  }
+}
 
 function* runDeleteRequest(action) {
   try {
@@ -74,6 +87,10 @@ function* runAuthenticationRequest(action) {
   yield fork(runIndexRequest);
 }
 
+function* handleSearchRequest() {
+  yield takeEvery(SEARCH_REQUEST, runSearchRequest);
+}
+
 function* handleDeleteRequest() {
   yield takeEvery(DELETE_REQUEST, runDeleteRequest);
 }
@@ -106,4 +123,5 @@ export default function* rootSaga() {
   yield fork(handleShowRequest);
   yield fork(handleUpdateRequest);
   yield fork(handleDeleteRequest);
+  yield fork(handleSearchRequest);
 }

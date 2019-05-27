@@ -19,12 +19,7 @@ export const App = () => {
         <Switch>
           <Route exact path="/items" component={Index}/>
           <Route exact path="/items/new" component={New}/>
-          <Route
-            exact path="/items/search"
-            render={
-              ({location, history}) => <Search keyword={location.keyword} history={history}/>
-            }
-          />
+          <Route path="/items/search" component={Search}/>
           <Route exact path="/items/:id" component={Show}/>
           <Route
             exact path="/items/:id/edit"
