@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputPrice, inputImageSrc, updateRequest, createRequest}) => {
+export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputPrice, inputImageSrc, createRequest, updateRequest}) => {
   const handleFileChange = e => {
     const reader = new FileReader();
     reader.onload = e => {

@@ -34,6 +34,22 @@ export const fetchCreate = (authToken, item) => {
     });
 };
 
+export const fetchShow = (id, authToken) => {
+  return axios
+    .get(`${baseUrl}/${id}`, {
+      headers: {
+        'authToken': authToken
+      }
+    })
+    .then(response => {
+      const data = response.data;
+      return {data};
+    })
+    .catch(error => {
+      return {error};
+    });
+};
+
 export const fetchUpdate = (id, authToken, item) => {
   return axios
     .put(`${baseUrl}/${id}`, item, {

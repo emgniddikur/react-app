@@ -1,4 +1,11 @@
-import {AUTHENTICATION_REQUEST, CREATE_REQUEST, DELETE_REQUEST, UPDATE_REQUEST} from "../constants/requests";
+import {
+  AUTHENTICATION_REQUEST,
+  CREATE_REQUEST,
+  DELETE_REQUEST,
+  INDEX_REQUEST,
+  SHOW_REQUEST,
+  UPDATE_REQUEST
+} from "../constants/requests";
 
 export const authenticationRequest = authToken => ({
   type: AUTHENTICATION_REQUEST,
@@ -7,10 +14,21 @@ export const authenticationRequest = authToken => ({
   }
 });
 
+export const indexRequest = () => ({
+  type: INDEX_REQUEST
+});
+
 export const createRequest = formItem => ({
   type: CREATE_REQUEST,
   payload: {
     formItem
+  }
+});
+
+export const showRequest = id => ({
+  type: SHOW_REQUEST,
+  payload: {
+    id
   }
 });
 

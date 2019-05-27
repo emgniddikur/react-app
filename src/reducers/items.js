@@ -7,6 +7,7 @@ import {
   INPUT_ITEM,
   INPUT_PRICE,
   INPUT_TITLE,
+  SET_ITEM,
   SET_ITEMS,
   UPDATE_ITEM
 } from "../constants/index";
@@ -17,6 +18,11 @@ export const items = (state = initialState, action) => {
       return {
         ...state,
         items: action.payload.items
+      };
+    case SET_ITEM:
+      return {
+        ...state,
+        item: action.payload.item
       };
     case INPUT_TITLE:
       return {

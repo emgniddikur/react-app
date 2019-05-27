@@ -6,6 +6,7 @@ import {
   INPUT_ITEM,
   INPUT_PRICE,
   INPUT_TITLE,
+  SET_ITEM,
   SET_ITEMS,
   UPDATE_ITEM
 } from "../constants/index";
@@ -14,6 +15,13 @@ export const setItems = items => ({
   type: SET_ITEMS,
   payload: {
     items
+  }
+});
+
+export const setItem = item => ({
+  type: SET_ITEM,
+  payload: {
+    item
   }
 });
 
