@@ -4,19 +4,21 @@ import {Item} from "../components/Item";
 import {connect} from "react-redux";
 import {deleteRequest} from "../actions/requests";
 
-const Show = ({itemId, items, deleteRequest}) => {
+const Show = ({item, deleteRequest}) => {
+  const id = item.id;
+
   return (
     <Fragment>
-      <Link to={`/items/${itemId}/edit`}>編集</Link>
-      <button onClick={() => deleteRequest(itemId)}>削除</button>
-      <Item item={items.find(e => e.id === Number(itemId))}/>
+      <Link to={`/items/${id}/edit`}>編集</Link>
+      <button onClick={() => deleteRequest(id)}>削除</button>
+      <Item item={item}/>
     </Fragment>
   );
 };
 
 export default connect(
   state => ({
-    items: state.itemReducer.items
+    item: state.itemReducer.item
   }),
   {deleteRequest}
 )(Show);

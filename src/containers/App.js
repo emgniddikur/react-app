@@ -25,12 +25,7 @@ export const App = () => {
               ({location, history}) => <Search keyword={location.keyword} history={history}/>
             }
           />
-          <Route
-            exact path="/items/:id"
-            render={
-              ({match}) => <Show itemId={match.params.id}/>
-            }
-          />
+          <Route exact path="/items/:id" component={Show}/>
           <Route
             exact path="/items/:id/edit"
             render={
