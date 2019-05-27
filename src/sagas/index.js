@@ -1,8 +1,15 @@
-import {call, fork, put, select, take, takeEvery} from 'redux-saga/effects';
+import {call, fork, put, select, takeEvery} from 'redux-saga/effects';
 import {push} from "react-router-redux";
-import {AUTHENTICATION_REQUEST, CREATE_REQUEST, DELETE_REQUEST, UPDATE_REQUEST} from "../constants/requests";
+import {
+  AUTHENTICATION_REQUEST,
+  CREATE_REQUEST,
+  DELETE_REQUEST,
+  INDEX_REQUEST,
+  SHOW_REQUEST,
+  UPDATE_REQUEST
+} from "../constants/requests";
 import * as API from "../api/api";
-import {createItem, deleteItem, setItems, updateItem} from "../actions";
+import {createItem, deleteItem, setItem, setItems, updateItem} from "../actions";
 import {addAuthToken} from "../actions/authToken";
 import {getAuthToken} from "../selectors/index";
 
@@ -28,6 +35,18 @@ function* runUpdateRequest(action) {
   }
 }
 
+function* runShowRequest(action) {
+  try {
+    const id = action.payload.id;
+    const authToken = yield select(getAuthToken);
+    const {data} = yield call(API.fetchShow, id, authToken);
+    yield put(setItem(data));
+    yield put(push(`/items/${id}`));
+  } catch (e) {
+
+  }
+}
+
 function* runCreateRequest(action) {
   try {
     const authToken = yield select(getAuthToken);
@@ -39,6 +58,22 @@ function* runCreateRequest(action) {
   }
 }
 
+function* runIndexRequest() {
+  try {
+    const authToken = yield select(getAuthToken);
+    const {data} = yield call(API.fetchIndex, authToken);
+    yield put(setItems(data));
+    yield put(push('/items'));
+  } catch (e) {
+
+  }
+}
+
+function* runAuthenticationRequest(action) {
+  yield put(addAuthToken(action.payload.authToken));
+  yield fork(runIndexRequest);
+}
+
 function* handleDeleteRequest() {
   yield takeEvery(DELETE_REQUEST, runDeleteRequest);
 }
@@ -47,48 +82,28 @@ function* handleUpdateRequest() {
   yield takeEvery(UPDATE_REQUEST, runUpdateRequest);
 }
 
+function* handleShowRequest() {
+  yield takeEvery(SHOW_REQUEST, runShowRequest)
+}
+
 function* handleCreateRequest() {
   yield takeEvery(CREATE_REQUEST, runCreateRequest);
 }
 
-function* runSecondAuthenticationRequest(action) {
-  try {
-    const authToken = action.payload.authToken;
-    const {data} = yield call(API.fetchIndex, authToken);
-    yield put(setItems(data));
-    yield put(addAuthToken(authToken));
-    yield put(push('/items'));
-  } catch (e) {
-
-  }
-}
-
-function* runFirstAuthenticationRequest(action) {
-  try {
-    const authToken = action.payload.authToken;
-    const {data} = yield call(API.fetchIndex, authToken);
-    yield put(setItems(data));
-    yield put(addAuthToken(authToken));
-    yield put(push('/items'));
-    yield takeEvery(AUTHENTICATION_REQUEST, runSecondAuthenticationRequest);
-    yield fork(handleCreateRequest);
-    yield fork(handleUpdateRequest);
-    yield fork(handleDeleteRequest);
-  } catch (e) {
-
-  }
+function* handleIndexRequest() {
+  yield takeEvery(INDEX_REQUEST, runIndexRequest);
 }
 
 function* handleAuthenticationRequest() {
-  const action = yield take(AUTHENTICATION_REQUEST);
-  yield fork(runFirstAuthenticationRequest, action);
-}
-
-function* startup() {
-  yield put(push('/auth'));
-  yield fork(handleAuthenticationRequest);
+  yield takeEvery(AUTHENTICATION_REQUEST, runAuthenticationRequest);
 }
 
 export default function* rootSaga() {
-  yield fork(startup);
+  yield put(push('/auth'));
+  yield fork(handleAuthenticationRequest);
+  yield fork(handleIndexRequest);
+  yield fork(handleCreateRequest);
+  yield fork(handleShowRequest);
+  yield fork(handleUpdateRequest);
+  yield fork(handleDeleteRequest);
 }
