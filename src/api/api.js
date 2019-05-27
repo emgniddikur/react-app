@@ -80,3 +80,19 @@ export const fetchDelete = (id, authToken) => {
       return {error}
     });
 };
+
+export const fetchSearch = (keyword, authToken) => {
+  return axios
+    .get(`${baseUrl}/search?keyword=${keyword}`, {
+      headers: {
+        'authToken': authToken
+      }
+    })
+    .then(response => {
+      const data = response.data;
+      return {data};
+    })
+    .catch(error => {
+      return {error}
+    });
+};

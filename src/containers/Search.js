@@ -2,14 +2,13 @@ import React, {Fragment} from 'react';
 import {SearchForm} from "../components/SearchForm";
 import {ItemList} from "../components/ItemList";
 import {connect} from "react-redux";
+import {searchRequest} from "../actions/requests";
 
-const Search = ({keyword, history, items}) => {
-  const searchResult = items.filter(e => e.title === keyword);
-
+const Search = ({items, searchRequest}) => {
   return (
     <Fragment>
-      <SearchForm history={history}/>
-      <ItemList items={searchResult}/>
+      <SearchForm searchRequest={searchRequest}/>
+      <ItemList items={items}/>
     </Fragment>
   );
 };
@@ -17,5 +16,6 @@ const Search = ({keyword, history, items}) => {
 export default connect(
   state => ({
     items: state.itemReducer.items
-  })
+  }),
+  {searchRequest}
 )(Search);

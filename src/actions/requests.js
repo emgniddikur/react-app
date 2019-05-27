@@ -3,6 +3,7 @@ import {
   CREATE_REQUEST,
   DELETE_REQUEST,
   INDEX_REQUEST,
+  SEARCH_REQUEST,
   SHOW_REQUEST,
   UPDATE_REQUEST
 } from "../constants/requests";
@@ -44,5 +45,12 @@ export const deleteRequest = id => ({
   type: DELETE_REQUEST,
   payload: {
     id: Number(id)
+  }
+});
+
+export const searchRequest = keyword => ({
+  type: SEARCH_REQUEST,
+  payload: {
+    keyword
   }
 });

@@ -1,13 +1,11 @@
 import React from 'react';
 
-export const SearchForm = ({history}) => {
+export const SearchForm = ({searchRequest}) => {
   let input;
 
   const handleClick = e => {
     e.preventDefault();
-    history.push({
-      keyword: input.value
-    });
+    searchRequest(input.value);
   };
 
   return (
