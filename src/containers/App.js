@@ -12,15 +12,15 @@ import Edit from "../containers/Edit";
 export const App = () => {
   return (
     <Fragment>
-      <nav>
+      <header>
         <Route path="/items" component={Nav}/>
-      </nav>
-      <Route
-        path="/"
-        render={
-          ({location}) => <ErrorMessage message={location.message} details={location.details}/>
-        }
-      />
+        <Route
+          path="/"
+          render={
+            ({location}) => <ErrorMessage message={location.message} details={location.details}/>
+          }
+        />
+      </header>
       <main>
         <Route exact path="/auth" component={Auth}/>
         <Switch>

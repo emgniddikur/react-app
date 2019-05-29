@@ -1,5 +1,5 @@
 import {
-  AUTHENTICATION_REQUEST,
+  AUTH_REQUEST,
   CREATE_REQUEST,
   DELETE_REQUEST,
   INDEX_REQUEST,
@@ -8,8 +8,8 @@ import {
   UPDATE_REQUEST
 } from "../constants/requests";
 
-export const authenticationRequest = authToken => ({
-  type: AUTHENTICATION_REQUEST,
+export const authRequest = authToken => ({
+  type: AUTH_REQUEST,
   payload: {
     authToken
   }
@@ -36,15 +36,15 @@ export const showRequest = id => ({
 export const updateRequest = (id, formItem) => ({
   type: UPDATE_REQUEST,
   payload: {
-    id: Number(id),
-    formItem: formItem
+    id,
+    formItem
   }
 });
 
 export const deleteRequest = id => ({
   type: DELETE_REQUEST,
   payload: {
-    id: Number(id)
+    id
   }
 });
 
