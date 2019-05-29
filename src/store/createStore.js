@@ -25,6 +25,6 @@ export const createStore = history => {
       )
     )
   );
-  sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(rootSaga, history);
   return store;
 };
