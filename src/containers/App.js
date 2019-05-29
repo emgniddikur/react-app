@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import Nav from "./Nav";
+import {ErrorMessage} from "../components/ErrorMessage";
 import {Route, Switch} from "react-router-dom";
 import Index from "./Index";
 import New from "./New";
@@ -14,6 +15,12 @@ export const App = () => {
       <nav>
         <Route path="/items" component={Nav}/>
       </nav>
+      <Route
+        path="/"
+        render={
+          ({location}) => <ErrorMessage message={location.message} details={location.details}/>
+        }
+      />
       <main>
         <Route exact path="/auth" component={Auth}/>
         <Switch>

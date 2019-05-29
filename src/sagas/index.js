@@ -14,114 +14,121 @@ import {createItem, deleteItem, setItem, setItems, updateItem} from "../actions"
 import {addAuthToken} from "../actions/authToken";
 import {getAuthToken} from "../selectors/index";
 
-function* runSearchRequest(action) {
-  try {
-    const keyword = action.payload.keyword;
-    const authToken = yield select(getAuthToken);
-    const {data} = yield call(API.fetchSearch, keyword, authToken);
+function* errorProcessing(history, error) {
+  yield call(history.push, {
+    message: error.response.data.message,
+    details: error.response.data.details
+  });
+}
+
+function* runSearchRequest(history, action) {
+  const keyword = action.payload.keyword;
+  const authToken = yield select(getAuthToken);
+  const {data, error} = yield call(API.fetchSearch, keyword, authToken);
+  if (data && !error) {
     yield put(setItems(data));
     yield put(push(`/items/search?keyword=${keyword}`));
-  } catch (e) {
-
+  } else {
+    yield fork(errorProcessing, history, error);
   }
 }
 
-function* runDeleteRequest(action) {
-  try {
-    const authToken = yield select(getAuthToken);
-    const {id} = yield call(API.fetchDelete, action.payload.id, authToken);
+function* runDeleteRequest(history, action) {
+  const authToken = yield select(getAuthToken);
+  const {id, error} = yield call(API.fetchDelete, action.payload.id, authToken);
+  if (!error) {
     yield put(push('/items'));
     yield put(deleteItem(id));
-  } catch (e) {
-
+  } else {
+    yield fork(errorProcessing, history, error);
   }
 }
 
-function* runUpdateRequest(action) {
-  try {
-    const authToken = yield select(getAuthToken);
-    const {id, data} = yield call(API.fetchUpdate, action.payload.id, authToken, action.payload.formItem);
+function* runUpdateRequest(history, action) {
+  const authToken = yield select(getAuthToken);
+  const {id, data, error} = yield call(API.fetchUpdate, action.payload.id, authToken, action.payload.formItem);
+  if (data && !error) {
     yield put(updateItem(id, data));
     yield put(push('/items'));
-  } catch (e) {
-
+  } else {
+    yield fork(errorProcessing, history, error);
   }
 }
 
-function* runShowRequest(action) {
-  try {
-    const id = action.payload.id;
-    const authToken = yield select(getAuthToken);
-    const {data} = yield call(API.fetchShow, id, authToken);
+function* runShowRequest(history, action) {
+  const id = action.payload.id;
+  const authToken = yield select(getAuthToken);
+  const {data, error} = yield call(API.fetchShow, id, authToken);
+  if (data && !error) {
     yield put(setItem(data));
     yield put(push(`/items/${id}`));
-  } catch (e) {
-
+  } else {
+    yield fork(errorProcessing, history, error);
   }
 }
 
-function* runCreateRequest(action) {
-  try {
-    const authToken = yield select(getAuthToken);
-    const {data} = yield call(API.fetchCreate, authToken, action.payload.formItem);
+function* runCreateRequest(history, action) {
+  const authToken = yield select(getAuthToken);
+  const {data, error} = yield call(API.fetchCreate, authToken, action.payload.formItem);
+  if (data && !error) {
     yield put(createItem(data));
     yield put(push('/items'));
-  } catch (e) {
-
+  } else {
+    yield fork(errorProcessing, history, error);
   }
 }
 
-function* runIndexRequest() {
-  try {
-    const authToken = yield select(getAuthToken);
-    const {data} = yield call(API.fetchIndex, authToken);
+function* runIndexRequest(history) {
+  const authToken = yield select(getAuthToken);
+  const {data, error} = yield call(API.fetchIndex, authToken);
+  if (data && !error) {
     yield put(setItems(data));
     yield put(push('/items'));
-  } catch (e) {
-
+  } else {
+    yield fork(errorProcessing, history, error);
   }
 }
 
-function* runAuthenticationRequest(action) {
+function* runAuthenticationRequest(history, action) {
   yield put(addAuthToken(action.payload.authToken));
-  yield fork(runIndexRequest);
+  yield fork(runIndexRequest, history);
 }
 
-function* handleSearchRequest() {
-  yield takeEvery(SEARCH_REQUEST, runSearchRequest);
+function* handleSearchRequest(history) {
+  yield takeEvery(SEARCH_REQUEST, runSearchRequest, history);
 }
 
-function* handleDeleteRequest() {
-  yield takeEvery(DELETE_REQUEST, runDeleteRequest);
+function* handleDeleteRequest(history) {
+  yield takeEvery(DELETE_REQUEST, runDeleteRequest, history);
 }
 
-function* handleUpdateRequest() {
-  yield takeEvery(UPDATE_REQUEST, runUpdateRequest);
+function* handleUpdateRequest(history) {
+  yield takeEvery(UPDATE_REQUEST, runUpdateRequest, history);
 }
 
-function* handleShowRequest() {
-  yield takeEvery(SHOW_REQUEST, runShowRequest)
+function* handleShowRequest(history) {
+  yield takeEvery(SHOW_REQUEST, runShowRequest, history)
 }
 
-function* handleCreateRequest() {
-  yield takeEvery(CREATE_REQUEST, runCreateRequest);
+function* handleCreateRequest(history) {
+  yield takeEvery(CREATE_REQUEST, runCreateRequest, history);
 }
 
-function* handleIndexRequest() {
-  yield takeEvery(INDEX_REQUEST, runIndexRequest);
+function* handleIndexRequest(history) {
+  yield takeEvery(INDEX_REQUEST, runIndexRequest, history);
 }
 
-function* handleAuthenticationRequest() {
-  yield takeEvery(AUTHENTICATION_REQUEST, runAuthenticationRequest);
+function* handleAuthenticationRequest(history) {
+  yield takeEvery(AUTHENTICATION_REQUEST, runAuthenticationRequest, history);
 }
 
-export default function* rootSaga() {
+export default function* rootSaga(history) {
   yield put(push('/auth'));
-  yield fork(handleAuthenticationRequest);
-  yield fork(handleIndexRequest);
-  yield fork(handleCreateRequest);
-  yield fork(handleShowRequest);
-  yield fork(handleUpdateRequest);
-  yield fork(handleDeleteRequest);
-  yield fork(handleSearchRequest);
+  yield fork(handleAuthenticationRequest, history);
+  yield fork(handleIndexRequest, history);
+  yield fork(handleCreateRequest, history);
+  yield fork(handleShowRequest, history);
+  yield fork(handleUpdateRequest, history);
+  yield fork(handleDeleteRequest, history);
+  yield fork(handleSearchRequest, history);
 }
