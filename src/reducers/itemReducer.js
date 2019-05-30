@@ -1,4 +1,4 @@
-import {initialState} from "./initialState";
+import {initialItemState} from "./initialItemState";
 import {
   CREATE_ITEM,
   DELETE_ITEM,
@@ -10,9 +10,9 @@ import {
   SET_ITEM,
   SET_ITEMS,
   UPDATE_ITEM
-} from "../constants/index";
+} from "../constants/items";
 
-export const items = (state = initialState, action) => {
+export const itemReducer = (state = initialItemState, action) => {
   switch (action.type) {
     case SET_ITEMS:
       return {
@@ -71,7 +71,7 @@ export const items = (state = initialState, action) => {
       return {
         ...state,
         items: state.items.concat([action.payload.formItem]),
-        formItem: initialState.formItem
+        formItem: initialItemState.formItem
       };
     case UPDATE_ITEM:
       return {
@@ -79,7 +79,7 @@ export const items = (state = initialState, action) => {
         items: state.items
           .filter(e => e.id !== action.payload.id)
           .concat([action.payload.formItem]),
-        formItem: initialState.formItem
+        formItem: initialItemState.formItem
       };
     case DELETE_ITEM:
       return {

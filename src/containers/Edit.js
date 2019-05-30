@@ -1,14 +1,14 @@
 import React, {Component} from "react";
 import {ItemForm} from "../components/ItemForm";
 import {connect} from "react-redux";
-import {inputDescription, inputImageSrc, inputItem, inputPrice, inputTitle} from "../actions/index";
+import {inputDescription, inputImageSrc, inputItem, inputPrice, inputTitle} from "../actions/items";
 import {updateRequest} from "../actions/requests";
 
 class Edit extends Component {
   constructor(props) {
     super(props);
-    const {inputItem, items, itemId} = this.props;
-    inputItem(items.find(e => e.id === Number(itemId)));
+    const {item, inputItem} = this.props;
+    inputItem(item);
   }
 
   render() {
@@ -37,8 +37,8 @@ class Edit extends Component {
 
 export default connect(
   state => ({
-    formItem: state.itemReducer.formItem,
-    items: state.itemReducer.items
+    item: state.itemReducer.item,
+    formItem: state.itemReducer.formItem
   }),
   {inputTitle, inputDescription, inputPrice, inputImageSrc, inputItem, updateRequest}
 )(Edit);

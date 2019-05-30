@@ -11,7 +11,7 @@ export const ItemList = ({items, showRequest}) => {
       {
         items.map(item => {
           return (
-            <li key={item.id} onClick={(e) => handleClick(e, item.id)}>
+            <li key={item.id} onClick={e => handleClick(e, item.id)}>
               {item.title}
             </li>
           );

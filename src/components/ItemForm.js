@@ -5,7 +5,7 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
     const reader = new FileReader();
     reader.onload = e => {
       inputImageSrc(e.target.result);
-      document.getElementById("image").innerHTML = `<img src="${e.target.result}"/>`;
+      document.getElementById("image").innerHTML = `<img src="${e.target.result}"/><br/>`;
     };
     reader.readAsDataURL(e.target.files[0]);
   };

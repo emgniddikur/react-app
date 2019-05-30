@@ -1,4 +1,4 @@
-export const initialState = {
+export const initialItemState = {
   items: [],
   item: {
     id: null,
