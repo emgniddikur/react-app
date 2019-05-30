@@ -6,28 +6,28 @@ export const fetchIndex = authToken => {
   return axios
     .get(baseUrl, {
       headers: {
-        'authToken': authToken
+        authToken
       }
     })
     .then(response => {
-      const data = response.data;
-      return {data};
+      const items = response.data;
+      return {items};
     })
     .catch(error => {
       return {error};
     });
 };
 
-export const fetchCreate = (authToken, item) => {
+export const fetchCreate = (authToken, formItem) => {
   return axios
-    .post(baseUrl, item, {
+    .post(baseUrl, formItem, {
       headers: {
-        'authToken': authToken
+        authToken
       }
     })
     .then(response => {
-      const data = response.data;
-      return {data};
+      const item = response.data;
+      return {item};
     })
     .catch(error => {
       return {error};
@@ -38,28 +38,28 @@ export const fetchShow = (id, authToken) => {
   return axios
     .get(`${baseUrl}/${id}`, {
       headers: {
-        'authToken': authToken
+        authToken
       }
     })
     .then(response => {
-      const data = response.data;
-      return {data};
+      const item = response.data;
+      return {item};
     })
     .catch(error => {
       return {error};
     });
 };
 
-export const fetchUpdate = (id, authToken, item) => {
+export const fetchUpdate = (id, authToken, formItem) => {
   return axios
-    .put(`${baseUrl}/${id}`, item, {
+    .put(`${baseUrl}/${id}`, formItem, {
       headers: {
-        'authToken': authToken
+        authToken
       }
     })
     .then(response => {
-      const data = response.data;
-      return {id, data};
+      const item = response.data;
+      return {item};
     })
     .catch(error => {
       return {error};
@@ -70,11 +70,8 @@ export const fetchDelete = (id, authToken) => {
   return axios
     .delete(`${baseUrl}/${id}`, {
       headers: {
-        'authToken': authToken
+        authToken
       }
-    })
-    .then(() => {
-      return {id};
     })
     .catch(error => {
       return {error}
@@ -85,12 +82,12 @@ export const fetchSearch = (keyword, authToken) => {
   return axios
     .get(`${baseUrl}/search?keyword=${keyword}`, {
       headers: {
-        'authToken': authToken
+        authToken
       }
     })
     .then(response => {
-      const data = response.data;
-      return {data};
+      const items = response.data;
+      return {items};
     })
     .catch(error => {
       return {error}

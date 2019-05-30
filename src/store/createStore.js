@@ -1,7 +1,7 @@
 import {applyMiddleware, combineReducers, compose, createStore as reduxCreateStore} from "redux";
-import {items} from "../reducers/items";
+import {itemReducer} from "../reducers/itemReducer";
 import {routerMiddleware, routerReducer} from "react-router-redux";
-import {authToken} from "../reducers/authToken";
+import {authTokenReducer} from "../reducers/authTokenReducer";
 import {logger} from "redux-logger/src";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/index';
@@ -13,9 +13,9 @@ const sagaMiddleware = createSagaMiddleware();
 export const createStore = history => {
   const store = reduxCreateStore(
     combineReducers({
-      itemReducer: items,
-      routerReducer: routerReducer,
-      authTokenReducer: authToken
+      itemReducer,
+      routerReducer,
+      authTokenReducer
     }),
     composeEnhancers(
       applyMiddleware(

@@ -9,7 +9,7 @@ import {
   SET_ITEM,
   SET_ITEMS,
   UPDATE_ITEM
-} from "../constants/index";
+} from "../constants/items";
 
 export const setItems = items => ({
   type: SET_ITEMS,
@@ -42,7 +42,7 @@ export const inputDescription = description => ({
 export const inputPrice = price => ({
   type: INPUT_PRICE,
   payload: {
-    price: Number(price)
+    price
   }
 });
 
@@ -70,14 +70,14 @@ export const createItem = formItem => ({
 export const updateItem = (id, formItem) => ({
   type: UPDATE_ITEM,
   payload: {
-    id: Number(id),
-    formItem: formItem
+    id,
+    formItem
   }
 });
 
 export const deleteItem = id => ({
   type: DELETE_ITEM,
   payload: {
-    id: Number(id)
+    id
   }
 });

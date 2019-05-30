@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const AuthForm = ({authenticationRequest}) => {
+export const AuthForm = ({authRequest}) => {
   let input;
 
   const handleClick = e => {
     e.preventDefault();
-    authenticationRequest(input.value);
+    authRequest(input.value);
   };
 
   return (
