@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button, TextField} from '@material-ui/core';
 
 export const SearchForm = ({searchRequest}) => {
   let input;
@@ -10,9 +11,14 @@ export const SearchForm = ({searchRequest}) => {
 
   return (
     <form>
-      <label htmlFor="keyword">キーワード</label>
-      <input id="keyword" type="text" ref={node => input = node}/>
-      <input type="button" value="検索" onClick={e => handleClick(e)}/>
+      <TextField
+        id="keyword"
+        label="キーワード"
+        inputRef={node => input = node}
+      />
+      <Button variant="contained" color="primary" onClick={e => handleClick(e)}>
+        検索
+      </Button>
     </form>
   );
 };
