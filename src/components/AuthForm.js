@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button, TextField} from '@material-ui/core';
 
 export const AuthForm = ({authRequest}) => {
   let input;
@@ -10,9 +11,14 @@ export const AuthForm = ({authRequest}) => {
 
   return (
     <form>
-      <label htmlFor="authToken">認証トークン</label>
-      <input id="authToken" type="text" ref={node => input = node}/>
-      <input type="button" value="送信" onClick={e => handleClick(e)}/>
+      <TextField
+        id="authToken"
+        label="認証トークン"
+        inputRef={node => input = node}
+      />
+      <Button variant="contained" color="primary" onClick={e => handleClick(e)}>
+        送信
+      </Button>
     </form>
-  )
+  );
 };
