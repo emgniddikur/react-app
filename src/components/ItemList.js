@@ -1,4 +1,5 @@
 import React from 'react';
+import {List, ListItem, ListItemText} from "@material-ui/core";
 
 export const ItemList = ({items, showRequest}) => {
   const handleClick = (e, id) => {
@@ -7,16 +8,19 @@ export const ItemList = ({items, showRequest}) => {
   };
 
   return (
-    <ul>
+    <List>
       {
         items.map(item => {
           return (
-            <li key={item.id} onClick={e => handleClick(e, item.id)}>
-              {item.title}
-            </li>
+            <ListItem key={item.id} button onClick={e => handleClick(e, item.id)}>
+              <div>
+                <img src={item.imageSrc} alt="商品画像"/>
+              </div>
+              <ListItemText primary={item.title}/>
+            </ListItem>
           );
         })
       }
-    </ul>
+    </List>
   );
 };
