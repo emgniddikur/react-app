@@ -84,12 +84,14 @@ export const itemReducer = (state = initialItemState, action) => {
             }
             return e;
           }),
+        item: action.payload.formItem,
         formItem: initialItemState.formItem
       };
     case DELETE_ITEM:
       return {
         ...state,
-        items: state.items.filter(e => e.id !== action.payload.id)
+        items: state.items.filter(e => e.id !== action.payload.id),
+        item: initialItemState.item
       };
     case SET_SEARCH_RESULTS:
       return {
