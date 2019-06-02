@@ -77,8 +77,12 @@ export const itemReducer = (state = initialItemState, action) => {
       return {
         ...state,
         items: state.items
-          .filter(e => e.id !== action.payload.id)
-          .concat([action.payload.formItem]),
+          .map(e => {
+            if (e.id === action.payload.id) {
+              return {...e, ...action.payload.formItem}
+            }
+            return e;
+          }),
         formItem: initialItemState.formItem
       };
     case DELETE_ITEM:
