@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button, TextField} from '@material-ui/core';
 
-export const SearchForm = ({searchRequest}) => {
+export const SearchForm = ({history}) => {
   let input;
 
   const handleClick = e => {
     e.preventDefault();
-    searchRequest(input.value);
+    history.push(`/items/search?keyword=${input.value}`);
   };
 
   return (

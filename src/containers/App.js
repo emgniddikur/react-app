@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import Nav from "./Nav";
+import {Nav} from "./Nav";
 import {ErrorMessage} from "../components/ErrorMessage";
 import {Route, Switch} from "react-router-dom";
 import Index from "./Index";

@@ -13,5 +13,6 @@ export const initialItemState = {
     description: "",
     price: "",
     imageSrc: ""
-  }
+  },
+  searchResults: []
 };

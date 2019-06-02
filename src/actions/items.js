@@ -8,6 +8,7 @@ import {
   INPUT_TITLE,
   SET_ITEM,
   SET_ITEMS,
+  SET_SEARCH_RESULTS,
   UPDATE_ITEM
 } from "../constants/items";
 
@@ -79,5 +80,12 @@ export const deleteItem = id => ({
   type: DELETE_ITEM,
   payload: {
     id
+  }
+});
+
+export const setSearchResults = searchResults => ({
+  type: SET_SEARCH_RESULTS,
+  payload: {
+    searchResults
   }
 });

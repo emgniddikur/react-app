@@ -1,13 +1,10 @@
 import React from 'react';
-import {connect} from "react-redux";
-import {indexRequest} from "../actions/requests";
-import {setItems} from "../actions/items";
 import {AppBar, Button, Toolbar, Typography} from "@material-ui/core";
 
-const Nav = ({history, indexRequest, setItems}) => {
+export const Nav = ({history}) => {
   const handleClickToIndex = e => {
     e.preventDefault();
-    indexRequest();
+    history.push("/items");
   };
 
   const handleClickToNew = e => {
@@ -17,7 +14,6 @@ const Nav = ({history, indexRequest, setItems}) => {
 
   const handleClickToSearch = e => {
     e.preventDefault();
-    setItems([]);
     history.push("/items/search")
   };
 
@@ -39,8 +35,3 @@ const Nav = ({history, indexRequest, setItems}) => {
     </AppBar>
   );
 };
-
-export default connect(
-  null,
-  {indexRequest, setItems}
-)(Nav);

@@ -1,10 +1,10 @@
 import React from 'react';
 import {List, ListItem, ListItemText} from "@material-ui/core";
 
-export const ItemList = ({items, showRequest}) => {
+export const ItemList = ({history, items}) => {
   const handleClick = (e, id) => {
     e.preventDefault();
-    showRequest(id);
+    history.push(`/items/${id}`);
   };
 
   return (
