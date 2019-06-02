@@ -1,12 +1,4 @@
-import {
-  AUTH_REQUEST,
-  CREATE_REQUEST,
-  DELETE_REQUEST,
-  INDEX_REQUEST,
-  SEARCH_REQUEST,
-  SHOW_REQUEST,
-  UPDATE_REQUEST
-} from "../constants/requests";
+import {AUTH_REQUEST, CREATE_REQUEST, DELETE_REQUEST, UPDATE_REQUEST} from "../constants/requests";
 
 export const authRequest = authToken => ({
   type: AUTH_REQUEST,
@@ -15,21 +7,10 @@ export const authRequest = authToken => ({
   }
 });
 
-export const indexRequest = () => ({
-  type: INDEX_REQUEST
-});
-
 export const createRequest = formItem => ({
   type: CREATE_REQUEST,
   payload: {
     formItem
-  }
-});
-
-export const showRequest = id => ({
-  type: SHOW_REQUEST,
-  payload: {
-    id
   }
 });
 
@@ -45,12 +26,5 @@ export const deleteRequest = id => ({
   type: DELETE_REQUEST,
   payload: {
     id
-  }
-});
-
-export const searchRequest = keyword => ({
-  type: SEARCH_REQUEST,
-  payload: {
-    keyword
   }
 });
