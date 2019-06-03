@@ -5,6 +5,7 @@ import {
   INPUT_DESCRIPTION,
   INPUT_IMAGE_SRC,
   INPUT_ITEM,
+  INPUT_KEYWORD,
   INPUT_PRICE,
   INPUT_TITLE,
   SET_ITEM,
@@ -92,6 +93,11 @@ export const itemReducer = (state = initialItemState, action) => {
         ...state,
         items: state.items.filter(e => e.id !== action.payload.id),
         item: initialItemState.item
+      };
+    case INPUT_KEYWORD:
+      return {
+        ...state,
+        keyword: action.payload.keyword
       };
     case SET_SEARCH_RESULTS:
       return {

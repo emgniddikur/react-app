@@ -10,7 +10,16 @@ import {
   REQUEST_TO_UPDATE_ITEM
 } from "../constants/requests";
 import * as API from "../api/api";
-import {createItem, deleteItem, inputItem, setItem, setItems, setSearchResults, updateItem} from "../actions/items";
+import {
+  createItem,
+  deleteItem,
+  inputItem,
+  inputKeyword,
+  setItem,
+  setItems,
+  setSearchResults,
+  updateItem
+} from "../actions/items";
 import {addAuthToken} from "../actions/authToken";
 import {getAuthToken, getItems} from "../selectors/index";
 import {requestToGetAllItems, requestToGetOneItem, requestToSearchItems} from "../actions/requests";
@@ -110,6 +119,7 @@ function* handleLocationChange() {
           const keyword = decodeURIComponent(payload.search.match(/\?keyword=(.*)/)[1]);
           yield put(requestToSearchItems(keyword));
         } else {
+          yield put(inputKeyword(initialItemState.keyword));
           yield put(setSearchResults(initialItemState.searchResults));
         }
         break;
