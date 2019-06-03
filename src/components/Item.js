@@ -1,19 +1,15 @@
 import React from 'react';
 import {Paper, Table, TableBody, TableCell, TableRow} from "@material-ui/core";
-import DeleteButton from "../buttons/DeleteButton";
-import {EditButton} from "../buttons/EditButton";
+import DeleteButton from "./DeleteButton";
+import {EditButton} from "./EditButton";
 
 export const Item = ({history, item}) => {
   return (
     <Paper>
-      <div>
-        <h1>{item.title}</h1>
-        <EditButton history={history} itemId={item.id}/>
-        <DeleteButton itemId={item.id}/>
-      </div>
-      <div>
-        <img src={item.imageSrc} alt="商品画像"/>
-      </div>
+      <h1>{item.title}</h1>
+      <EditButton history={history} itemId={item.id}/>
+      <DeleteButton itemId={item.id}/>
+      <img src={item.imageSrc} alt="商品画像"/>
       <Table>
         <TableBody>
           <TableRow>

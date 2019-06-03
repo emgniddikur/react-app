@@ -2,6 +2,7 @@ import React from 'react';
 
 export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputPrice, inputImageSrc, createRequest, updateRequest}) => {
   const handleFileChange = e => {
+    e.preventDefault();
     const reader = new FileReader();
     reader.onload = e => {
       inputImageSrc(e.target.result);
