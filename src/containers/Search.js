@@ -1,31 +1,26 @@
-import React, {Component, Fragment} from 'react';
+import React, {Fragment} from 'react';
 import {SearchForm} from "../components/SearchForm";
 import {ItemList} from "../components/ItemList";
 import {connect} from "react-redux";
 import {setSearchResults} from "../actions/items";
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-    this.props.setSearchResults([]);
-  }
-
-  render() {
-    const {
-      history,
-      searchResults
-    } = this.props;
-    return (
-      <Fragment>
-        <SearchForm history={history}/>
-        <ItemList history={history} items={searchResults}/>
-      </Fragment>
-    );
-  }
-}
+const Search = ({history, loading, searchResults}) => {
+  return (
+    <Fragment>
+      {
+        loading ? 'ロード中...' :
+          <Fragment>
+            <SearchForm history={history}/>
+            <ItemList history={history} items={searchResults}/>
+          </Fragment>
+      }
+    </Fragment>
+  );
+};
 
 export default connect(
   state => ({
+    loading: state.loadingReducer.loading,
     searchResults: state.itemReducer.searchResults
   }),
   {setSearchResults}

@@ -6,7 +6,7 @@ import {Button} from "@material-ui/core";
 const DeleteButton = ({itemId, deleteRequest}) => {
   const handleClick = e => {
     e.preventDefault();
-    deleteRequest(itemId)
+    deleteRequest(itemId);
   };
 
   return (

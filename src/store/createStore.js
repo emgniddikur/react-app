@@ -2,6 +2,7 @@ import {applyMiddleware, combineReducers, compose, createStore as reduxCreateSto
 import {itemReducer} from "../reducers/itemReducer";
 import {routerMiddleware, routerReducer} from "react-router-redux";
 import {authTokenReducer} from "../reducers/authTokenReducer";
+import {loadingReducer} from "../reducers/loadingReducer";
 import {logger} from "redux-logger/src";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/index';
@@ -15,7 +16,8 @@ export const createStore = history => {
     combineReducers({
       itemReducer,
       routerReducer,
-      authTokenReducer
+      authTokenReducer,
+      loadingReducer
     }),
     composeEnhancers(
       applyMiddleware(
