@@ -1,12 +1,10 @@
 import React from 'react';
 import {Button, TextField} from '@material-ui/core';
 
-export const SearchForm = ({history}) => {
-  let input;
-
+export const SearchForm = ({history, keyword, inputKeyword}) => {
   const handleClick = e => {
     e.preventDefault();
-    history.push(`/items/search?keyword=${input.value}`);
+    history.push(`/items/search?keyword=${keyword}`);
   };
 
   return (
@@ -14,7 +12,8 @@ export const SearchForm = ({history}) => {
       <TextField
         id="keyword"
         label="キーワード"
-        inputRef={node => input = node}
+        value={keyword}
+        onChange={e => inputKeyword(e.target.value)}
       />
       <Button variant="contained" color="primary" onClick={e => handleClick(e)}>
         検索

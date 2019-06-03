@@ -4,6 +4,7 @@ import {
   INPUT_DESCRIPTION,
   INPUT_IMAGE_SRC,
   INPUT_ITEM,
+  INPUT_KEYWORD,
   INPUT_PRICE,
   INPUT_TITLE,
   SET_ITEM,
@@ -80,6 +81,13 @@ export const deleteItem = id => ({
   type: DELETE_ITEM,
   payload: {
     id
+  }
+});
+
+export const inputKeyword = keyword => ({
+  type: INPUT_KEYWORD,
+  payload: {
+    keyword
   }
 });
 
