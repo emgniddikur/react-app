@@ -21,29 +21,23 @@ import {
   updateItem
 } from "../actions/items";
 import {addAuthToken} from "../actions/authToken";
-import {getAuthToken, getItems} from "../selectors/index";
+import {getAuthToken, getItems, getMessage} from "../selectors/index";
 import {requestToGetAllItems, requestToGetOneItem, requestToSearchItems} from "../actions/requests";
 import {initialItemState} from "../reducers/initialItemState";
+import {fetchFailure, resetErrorMessage} from "../actions/fetchFailure";
 
-function* errorProcessing(history, error) {
-  yield call(history.push, {
-    message: error.response.data.message,
-    details: error.response.data.details
-  });
-}
-
-function* runRequestToSearchItems(history, action) {
+function* runRequestToSearchItems(action) {
   const keyword = action.payload.keyword;
   const authToken = yield select(getAuthToken);
   const {items, error} = yield call(API.fetchSearch, keyword, authToken);
   if (items && !error) {
     yield put(setSearchResults(items));
   } else {
-    // yield fork(errorProcessing, history, error);
+    yield put(fetchFailure(error));
   }
 }
 
-function* runRequestToDeleteItem(history, action) {
+function* runRequestToDeleteItem(action) {
   const id = action.payload.id;
   const authToken = yield select(getAuthToken);
   const {error} = yield call(API.fetchDelete, id, authToken);
@@ -51,11 +45,11 @@ function* runRequestToDeleteItem(history, action) {
     yield put(deleteItem(Number(id)));
     yield put(push('/items'));
   } else {
-    // yield fork(errorProcessing, history, error);
+    yield put(fetchFailure(error));
   }
 }
 
-function* runRequestToUpdateItem(history, action) {
+function* runRequestToUpdateItem(action) {
   const id = action.payload.id;
   const authToken = yield select(getAuthToken);
   const {item, error} = yield call(API.fetchUpdate, id, authToken, action.payload.formItem);
@@ -63,43 +57,43 @@ function* runRequestToUpdateItem(history, action) {
     yield put(updateItem(Number(id), item));
     yield put(push('/items'));
   } else {
-    // yield fork(errorProcessing, history, error);
+    yield put(fetchFailure(error));
   }
 }
 
-function* runRequestToGetItem(history, action) {
+function* runRequestToGetItem(action) {
   const id = action.payload.id;
   const authToken = yield select(getAuthToken);
   const {item, error} = yield call(API.fetchShow, id, authToken);
   if (item && !error) {
     yield put(setItem(item));
   } else {
-    // yield fork(errorProcessing, history, error);
+    yield put(fetchFailure(error));
   }
 }
 
-function* runRequestToCreateItem(history, action) {
+function* runRequestToCreateItem(action) {
   const authToken = yield select(getAuthToken);
   const {item, error} = yield call(API.fetchCreate, authToken, action.payload.formItem);
   if (item && !error) {
     yield put(createItem(item));
     yield put(push('/items'));
   } else {
-    // yield fork(errorProcessing, history, error);
+    yield put(fetchFailure(error));
   }
 }
 
-function* runRequestToGetAllItems(history) {
+function* runRequestToGetAllItems() {
   const authToken = yield select(getAuthToken);
   const {items, error} = yield call(API.fetchIndex, authToken);
   if (items && !error) {
     yield put(setItems(items));
   } else {
-    // yield fork(errorProcessing, history, error);
+    yield put(fetchFailure(error));
   }
 }
 
-function* runRequestAuthentication(history, action) {
+function* runRequestAuthentication(action) {
   yield put(addAuthToken(action.payload.authToken));
   yield put(push('/items'));
 }
@@ -107,6 +101,10 @@ function* runRequestAuthentication(history, action) {
 function* handleLocationChange() {
   while (true) {
     const {payload} = yield take('@@router/LOCATION_CHANGE');
+    const message = yield select(getMessage);
+    if (message) {
+      yield put(resetErrorMessage());
+    }
     switch (true) {
       case /^\/items\/?$/.test(payload.pathname):
         yield put(requestToGetAllItems());
@@ -139,14 +137,14 @@ function* handleLocationChange() {
   }
 }
 
-export default function* rootSaga(history) {
+export default function* rootSaga() {
   yield put(push('/auth'));
-  yield fork(handleLocationChange, history);
-  yield takeEvery(REQUEST_AUTHENTICATION, runRequestAuthentication, history);
-  yield takeEvery(REQUEST_TO_GET_ALL_ITEMS, runRequestToGetAllItems, history);
-  yield takeEvery(REQUEST_TO_CREATE_ITEM, runRequestToCreateItem, history);
-  yield takeEvery(REQUEST_TO_GET_ITEM, runRequestToGetItem, history);
-  yield takeEvery(REQUEST_TO_UPDATE_ITEM, runRequestToUpdateItem, history);
-  yield takeEvery(REQUEST_TO_DELETE_ITEM, runRequestToDeleteItem, history);
-  yield takeEvery(REQUEST_TO_SEARCH_ITEMS, runRequestToSearchItems, history);
+  yield fork(handleLocationChange);
+  yield takeEvery(REQUEST_AUTHENTICATION, runRequestAuthentication);
+  yield takeEvery(REQUEST_TO_GET_ALL_ITEMS, runRequestToGetAllItems);
+  yield takeEvery(REQUEST_TO_CREATE_ITEM, runRequestToCreateItem);
+  yield takeEvery(REQUEST_TO_GET_ITEM, runRequestToGetItem);
+  yield takeEvery(REQUEST_TO_UPDATE_ITEM, runRequestToUpdateItem);
+  yield takeEvery(REQUEST_TO_DELETE_ITEM, runRequestToDeleteItem);
+  yield takeEvery(REQUEST_TO_SEARCH_ITEMS, runRequestToSearchItems);
 }

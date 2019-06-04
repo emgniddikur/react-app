@@ -1,12 +1,12 @@
 import React from 'react';
 import {Button, TextField} from '@material-ui/core';
 
-export const AuthForm = ({authRequest}) => {
+export const AuthForm = ({requestAuthentication}) => {
   let input;
 
   const handleClick = e => {
     e.preventDefault();
-    authRequest(input.value);
+    requestAuthentication(input.value);
   };
 
   return (

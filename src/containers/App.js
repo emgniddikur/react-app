@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import {Nav} from "./Nav";
-import {ErrorMessage} from "../components/ErrorMessage";
+import ErrorMessage from "../components/ErrorMessage";
 import {Route, Switch} from "react-router-dom";
 import Index from "./Index";
 import New from "./New";
@@ -12,30 +12,21 @@ import Edit from "../containers/Edit";
 export const App = () => {
   return (
     <Fragment>
-      <header>
-        <Route path="/items" component={Nav}/>
+      <Route path="/items" component={Nav}/>
+      <Route path="/" component={ErrorMessage}/>
+      <Route exact path="/auth" component={Auth}/>
+      <Switch>
+        <Route exact path="/items" component={Index}/>
+        <Route exact path="/items/new" component={New}/>
+        <Route path="/items/search" component={Search}/>
+        <Route exact path="/items/:id" component={Show}/>
         <Route
-          path="/"
+          exact path="/items/:id/edit"
           render={
-            ({location}) => <ErrorMessage message={location.message} details={location.details}/>
+            ({match}) => <Edit itemId={match.params.id}/>
           }
         />
-      </header>
-      <main>
-        <Route exact path="/auth" component={Auth}/>
-        <Switch>
-          <Route exact path="/items" component={Index}/>
-          <Route exact path="/items/new" component={New}/>
-          <Route path="/items/search" component={Search}/>
-          <Route exact path="/items/:id" component={Show}/>
-          <Route
-            exact path="/items/:id/edit"
-            render={
-              ({match}) => <Edit itemId={match.params.id}/>
-            }
-          />
-        </Switch>
-      </main>
+      </Switch>
     </Fragment>
   );
 };
