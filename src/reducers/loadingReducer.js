@@ -1,5 +1,6 @@
 import {REQUEST_TO_GET_ALL_ITEMS, REQUEST_TO_GET_ITEM, REQUEST_TO_SEARCH_ITEMS} from "../constants/requests";
 import {SET_ITEM, SET_ITEMS, SET_SEARCH_RESULTS} from "../constants/items";
+import {FETCH_FAILURE} from "../constants/FETCH_FAILURE";
 
 export const loadingReducer = (state = {isFetching: false}, action) => {
   switch (action.type) {
@@ -12,6 +13,7 @@ export const loadingReducer = (state = {isFetching: false}, action) => {
     case SET_ITEMS:
     case SET_ITEM:
     case SET_SEARCH_RESULTS:
+    case FETCH_FAILURE:
       return {
         isFetching: false
       };

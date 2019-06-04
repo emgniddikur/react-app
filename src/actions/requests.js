@@ -8,7 +8,7 @@ import {
   REQUEST_TO_UPDATE_ITEM
 } from "../constants/requests";
 
-export const authRequest = authToken => ({
+export const requestAuthentication = authToken => ({
   type: REQUEST_AUTHENTICATION,
   payload: {
     authToken
