@@ -1,5 +1,4 @@
 ## 仕様した技術要素
-Create React Appコマンドを実行してアプリケーションを作成しました。
 - @babel/runtime 7.4.4
 - @material-ui/core 4.0.1
 - axios 0.18.0
@@ -15,6 +14,7 @@ Create React Appコマンドを実行してアプリケーションを作成し�
 - redux-saga 1.0.2
 
 ## 開発環境のセットアップ
+Create React Appコマンドを実行してアプリケーションを作成しました。  
 1.Node >= 6 及び npm >= 5.2 の環境を用意する。  
 2.リポジトリのクローンする。
 ```
