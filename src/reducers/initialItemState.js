@@ -1,12 +1,6 @@
 export const initialItemState = {
   items: [],
-  item: {
-    id: null,
-    title: '',
-    description: '',
-    price: '',
-    imageSrc: ''
-  },
+  item: null,
   formItem: {
     id: null,
     title: '',

@@ -1,12 +1,12 @@
-import {REQUEST_TO_GET_ALL_ITEMS, REQUEST_TO_GET_ITEM, REQUEST_TO_SEARCH_ITEMS} from "../constants/requests";
+import {INDEX_REQUEST, SEARCH_REQUEST, SHOW_REQUEST} from "../constants/requests";
 import {SET_ITEM, SET_ITEMS, SET_SEARCH_RESULTS} from "../constants/items";
-import {FETCH_FAILURE} from "../constants/FETCH_FAILURE";
+import {FETCH_FAILURE} from "../constants/errors";
 
 export const loadingReducer = (state = {isFetching: false}, action) => {
   switch (action.type) {
-    case REQUEST_TO_GET_ALL_ITEMS:
-    case REQUEST_TO_GET_ITEM:
-    case REQUEST_TO_SEARCH_ITEMS:
+    case INDEX_REQUEST:
+    case SHOW_REQUEST:
+    case SEARCH_REQUEST:
       return {
         isFetching: true
       };

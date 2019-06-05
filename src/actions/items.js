@@ -62,18 +62,18 @@ export const inputItem = item => ({
   }
 });
 
-export const createItem = formItem => ({
+export const createItem = item => ({
   type: CREATE_ITEM,
   payload: {
-    formItem
+    item
   }
 });
 
-export const updateItem = (id, formItem) => ({
+export const updateItem = (id, item) => ({
   type: UPDATE_ITEM,
   payload: {
     id,
-    formItem
+    item
   }
 });
 

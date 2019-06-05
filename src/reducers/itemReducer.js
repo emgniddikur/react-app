@@ -62,7 +62,6 @@ export const itemReducer = (state = initialItemState, action) => {
       return {
         ...state,
         formItem: {
-          ...state.formItem,
           title: action.payload.item.title,
           description: action.payload.item.description,
           price: action.payload.item.price,
@@ -72,7 +71,7 @@ export const itemReducer = (state = initialItemState, action) => {
     case CREATE_ITEM:
       return {
         ...state,
-        items: state.items.concat([action.payload.formItem]),
+        items: state.items.concat([action.payload.item]),
         formItem: initialItemState.formItem
       };
     case UPDATE_ITEM:
@@ -80,18 +79,18 @@ export const itemReducer = (state = initialItemState, action) => {
         ...state,
         items: state.items
           .map(e => {
-            if (e.id === action.payload.id) {
-              return {...e, ...action.payload.formItem}
+            if (e.id === Number(action.payload.id)) {
+              return {...e, ...action.payload.item}
             }
             return e;
           }),
-        item: action.payload.formItem,
+        item: action.payload.item,
         formItem: initialItemState.formItem
       };
     case DELETE_ITEM:
       return {
         ...state,
-        items: state.items.filter(e => e.id !== action.payload.id),
+        items: state.items.filter(e => e.id !== Number(action.payload.id)),
         item: initialItemState.item
       };
     case INPUT_KEYWORD:
