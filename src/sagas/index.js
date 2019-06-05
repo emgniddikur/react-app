@@ -42,8 +42,8 @@ function* runDeleteRequest(action) {
   const authToken = yield select(getAuthToken);
   const {error} = yield call(API.fetchDelete, id, authToken);
   if (!error) {
-    yield put(push('/items'));
     yield put(deleteItem(id));
+    yield put(push('/items'));
   } else {
     yield put(fetchFailure(error));
   }
@@ -121,16 +121,18 @@ function* handleLocationChange() {
           yield put(setSearchResults(initialItemState.searchResults));
         }
         break;
-      case /^\/items\/\d+\/?$/.test(payload.pathname):
-        let id = payload.pathname.match(/\d+/)[0];
+      case /^\/items\/\d+\/?$/.test(payload.pathname): {
+        const id = payload.pathname.match(/(\d+)/)[0];
         yield put(showRequest(id));
         break;
-      case /^\/items\/\d+\/edit\/?$/.test(payload.pathname):
+      }
+      case /^\/items\/\d+\/edit\/?$/.test(payload.pathname): {
         const items = yield select(getItems);
-        id = payload.pathname.match(/\d+/)[0];
+        const id = payload.pathname.match(/^\/items\/(\d+)\/edit\/?$/)[0];
         const item = items.filter(e => e.id === Number(id))[0];
         yield put(inputItem(item));
         break;
+      }
       default:
         break;
     }

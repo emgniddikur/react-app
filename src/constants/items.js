@@ -1,5 +1,6 @@
 export const SET_ITEMS = 'SET_ITEMS';
 export const SET_ITEM = 'SET_ITEM';
+export const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
 export const INPUT_TITLE = 'INPUT_TITLE';
 export const INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';
 export const INPUT_PRICE = 'INPUT_PRICE';
@@ -9,4 +10,3 @@ export const CREATE_ITEM = 'CREATE_ITEM';
 export const UPDATE_ITEM = 'UPDATE_ITEM';
 export const DELETE_ITEM = 'DELETE_ITEM';
 export const INPUT_KEYWORD = 'INPUT_KEYWORD';
-export const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
