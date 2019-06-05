@@ -1,4 +1,4 @@
-import createBrowserHistory from "history/createBrowserHistory";
+import {createBrowserHistory} from "history";
 import {createStore} from "./store/createStore";
 import {render} from 'react-dom';
 import React from 'react';
