@@ -8,6 +8,7 @@ import Search from "./Search";
 import Auth from "./Auth";
 import Show from "./Show";
 import Edit from "../containers/Edit";
+import {ErrorPage} from "../components/ErrorPage";
 
 export const App = () => {
   return (
@@ -27,6 +28,7 @@ export const App = () => {
           }
         />
       </Switch>
+      <Route exact path="/error" component={ErrorPage}/>
     </Fragment>
   );
 };
