@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
-import {Nav} from "./Nav";
-import ErrorMessage from "../components/ErrorMessage";
+import Nav from "./Nav";
+import ErrorMessage from "./ErrorMessage";
 import {Route, Switch} from "react-router-dom";
 import Index from "./Index";
 import New from "./New";
@@ -12,8 +12,8 @@ import Edit from "../containers/Edit";
 export const App = () => {
   return (
     <Fragment>
-      <Route path="/items" component={Nav}/>
-      <Route path="/" component={ErrorMessage}/>
+      <Nav/>
+      <ErrorMessage/>
       <Route exact path="/auth" component={Auth}/>
       <Switch>
         <Route exact path="/items" component={Index}/>

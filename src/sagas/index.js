@@ -25,6 +25,15 @@ import {getAuthToken, getItems, getMessage} from "../selectors/index";
 import {indexRequest, searchRequest, showRequest} from "../actions/requests";
 import {initialItemState} from "../reducers/initialItemState";
 import {fetchFailure, resetErrorMessage} from "../actions/errors";
+import {login, logout} from "../actions/login";
+
+function* errorProcessing(error) {
+  if (error.response.status === 403) {
+    yield put(logout());
+    yield put(push('/auth'));
+  }
+  yield put(fetchFailure(error));
+}
 
 function* runSearchRequest(action) {
   const keyword = action.payload.keyword;
@@ -33,7 +42,7 @@ function* runSearchRequest(action) {
   if (items && !error) {
     yield put(setSearchResults(items));
   } else {
-    yield put(fetchFailure(error));
+    errorProcessing(error);
   }
 }
 
@@ -45,7 +54,7 @@ function* runDeleteRequest(action) {
     yield put(deleteItem(id));
     yield put(push('/items'));
   } else {
-    yield put(fetchFailure(error));
+    errorProcessing(error);
   }
 }
 
@@ -57,7 +66,7 @@ function* runUpdateRequest(action) {
     yield put(updateItem(id, item));
     yield put(push('/items'));
   } else {
-    yield put(fetchFailure(error));
+    errorProcessing(error);
   }
 }
 
@@ -68,7 +77,7 @@ function* runShowRequest(action) {
   if (item && !error) {
     yield put(setItem(item));
   } else {
-    yield put(fetchFailure(error));
+    errorProcessing(error);
   }
 }
 
@@ -79,7 +88,7 @@ function* runCreateRequest(action) {
     yield put(createItem(item));
     yield put(push('/items'));
   } else {
-    yield put(fetchFailure(error));
+    errorProcessing(error);
   }
 }
 
@@ -89,13 +98,20 @@ function* runIndexRequest() {
   if (items && !error) {
     yield put(setItems(items));
   } else {
-    yield put(fetchFailure(error));
+    errorProcessing(error);
   }
 }
 
 function* runAuthRequest(action) {
-  yield put(addAuthToken(action.payload.authToken));
-  yield put(push('/items'));
+  const authToken = action.payload.authToken;
+  const {error} = yield call(API.fetchIndex, authToken);
+  if (!error) {
+    yield put(login());
+    yield put(addAuthToken(authToken));
+    yield put(push('/items'));
+  } else {
+    yield put(fetchFailure(error));
+  }
 }
 
 function* handleLocationChange() {
