@@ -1,40 +1,40 @@
 import {
-  REQUEST_AUTHENTICATION,
-  REQUEST_TO_CREATE_ITEM,
-  REQUEST_TO_DELETE_ITEM,
-  REQUEST_TO_GET_ALL_ITEMS,
-  REQUEST_TO_GET_ITEM,
-  REQUEST_TO_SEARCH_ITEMS,
-  REQUEST_TO_UPDATE_ITEM
+  AUTH_REQUEST,
+  CREATE_REQUEST,
+  DELETE_REQUEST,
+  INDEX_REQUEST,
+  SEARCH_REQUEST,
+  SHOW_REQUEST,
+  UPDATE_REQUEST
 } from "../constants/requests";
 
-export const requestAuthentication = authToken => ({
-  type: REQUEST_AUTHENTICATION,
+export const authRequest = authToken => ({
+  type: AUTH_REQUEST,
   payload: {
     authToken
   }
 });
 
-export const requestToGetAllItems = () => ({
-  type: REQUEST_TO_GET_ALL_ITEMS
+export const indexRequest = () => ({
+  type: INDEX_REQUEST
 });
 
 export const createRequest = formItem => ({
-  type: REQUEST_TO_CREATE_ITEM,
+  type: CREATE_REQUEST,
   payload: {
     formItem
   }
 });
 
-export const requestToGetOneItem = id => ({
-  type: REQUEST_TO_GET_ITEM,
+export const showRequest = id => ({
+  type: SHOW_REQUEST,
   payload: {
     id
   }
 });
 
 export const updateRequest = (id, formItem) => ({
-  type: REQUEST_TO_UPDATE_ITEM,
+  type: UPDATE_REQUEST,
   payload: {
     id,
     formItem
@@ -42,14 +42,14 @@ export const updateRequest = (id, formItem) => ({
 });
 
 export const deleteRequest = id => ({
-  type: REQUEST_TO_DELETE_ITEM,
+  type: DELETE_REQUEST,
   payload: {
     id
   }
 });
 
-export const requestToSearchItems = keyword => ({
-  type: REQUEST_TO_SEARCH_ITEMS,
+export const searchRequest = keyword => ({
+  type: SEARCH_REQUEST,
   payload: {
     keyword
   }

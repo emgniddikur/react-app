@@ -1,6 +1,6 @@
-import {FETCH_FAILURE, RESET_ERROR_MESSAGE} from "../constants/FETCH_FAILURE";
+import {FETCH_FAILURE, RESET_ERROR_MESSAGE} from "../constants/errors";
 
-export const failureReducer = (
+export const errorReducer = (
   state = {
     message: null,
     details: null
@@ -9,8 +9,8 @@ export const failureReducer = (
   switch (action.type) {
     case FETCH_FAILURE:
       return {
-        message: action.payload.message,
-        details: action.payload.details
+        message: action.payload.error.response.data.message,
+        details: action.payload.error.response.data.details
       };
     case RESET_ERROR_MESSAGE:
       return {
