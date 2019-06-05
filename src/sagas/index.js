@@ -28,9 +28,12 @@ import {fetchFailure, resetErrorMessage} from "../actions/errors";
 import {login, logout} from "../actions/login";
 
 function* errorProcessing(error) {
-  if (error.response.status === 403) {
+  const status = error.response.status;
+  if (status === 403) {
     yield put(logout());
     yield put(push('/auth'));
+  } else if (status === 404 || status === 500) {
+    yield put(push('/error'));
   }
   yield put(fetchFailure(error));
 }
@@ -42,7 +45,7 @@ function* runSearchRequest(action) {
   if (items && !error) {
     yield put(setSearchResults(items));
   } else {
-    errorProcessing(error);
+    yield errorProcessing(error);
   }
 }
 
@@ -54,7 +57,7 @@ function* runDeleteRequest(action) {
     yield put(deleteItem(id));
     yield put(push('/items'));
   } else {
-    errorProcessing(error);
+    yield errorProcessing(error);
   }
 }
 
@@ -66,7 +69,7 @@ function* runUpdateRequest(action) {
     yield put(updateItem(id, item));
     yield put(push('/items'));
   } else {
-    errorProcessing(error);
+    yield errorProcessing(error);
   }
 }
 
@@ -77,7 +80,7 @@ function* runShowRequest(action) {
   if (item && !error) {
     yield put(setItem(item));
   } else {
-    errorProcessing(error);
+    yield errorProcessing(error);
   }
 }
 
@@ -88,7 +91,7 @@ function* runCreateRequest(action) {
     yield put(createItem(item));
     yield put(push('/items'));
   } else {
-    errorProcessing(error);
+    yield errorProcessing(error);
   }
 }
 
@@ -98,7 +101,7 @@ function* runIndexRequest() {
   if (items && !error) {
     yield put(setItems(items));
   } else {
-    errorProcessing(error);
+    yield errorProcessing(error);
   }
 }
 
@@ -110,7 +113,7 @@ function* runAuthRequest(action) {
     yield put(addAuthToken(authToken));
     yield put(push('/items'));
   } else {
-    yield put(fetchFailure(error));
+    yield errorProcessing(error);
   }
 }
 
