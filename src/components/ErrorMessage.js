@@ -7,13 +7,15 @@ const ErrorMessage = ({message, details}) => {
       {message &&
       <Fragment>
         <p>{message}</p>
+        {details &&
         <ul>
           {
-            details !== null && Object.values(details).map((value, index) => {
+            Object.values(details).map((value, index) => {
               return <li key={index}>{value}</li>;
             })
           }
         </ul>
+        }
       </Fragment>
       }
     </Fragment>
