@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import {AppBar, Button, Toolbar, Typography} from "@material-ui/core";
+import {connect} from "react-redux";
 
-export const Nav = ({history}) => {
+const Nav = ({history, login}) => {
   const handleClickToIndex = e => {
     e.preventDefault();
     history.push("/items");
@@ -25,13 +26,24 @@ export const Nav = ({history}) => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Button color="inherit" onClick={e => handleClickToIndex(e)}>
-          <Typography>商品管理アプリ</Typography>
-        </Button>
-        <Button color="inherit" onClick={e => handleClickToNew(e)}>新規登録</Button>
-        <Button color="inherit" onClick={e => handleClickToSearch(e)}>検索</Button>
-        <Button color="inherit" onClick={e => handleClickToAuth(e)}>認証</Button>
+        <Typography>商品管理アプリ</Typography>
+        {
+          login ?
+            <Fragment>
+              <Button color="inherit" onClick={e => handleClickToIndex(e)}>商品一覧</Button>
+              <Button color="inherit" onClick={e => handleClickToNew(e)}>新規登録</Button>
+              <Button color="inherit" onClick={e => handleClickToSearch(e)}>検索</Button>
+              <Button color="inherit" onClick={e => handleClickToAuth(e)}>認証</Button>
+            </Fragment>
+            : null
+        }
       </Toolbar>
     </AppBar>
   );
 };
+
+export default connect(
+  state => ({
+    login: state.loginReducer.login
+  })
+)(Nav);

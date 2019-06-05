@@ -5,6 +5,7 @@ import {authTokenReducer} from "../reducers/authTokenReducer";
 import {loadingReducer} from "../reducers/loadingReducer";
 import {logger} from "redux-logger/src";
 import {errorReducer} from "../reducers/errorReducer";
+import {loginReducer} from "../reducers/loginReducer";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/index';
 
@@ -19,7 +20,8 @@ export const createStore = history => {
       routerReducer,
       authTokenReducer,
       loadingReducer,
-      failureReducer: errorReducer
+      errorReducer,
+      loginReducer
     }),
     composeEnhancers(
       applyMiddleware(
