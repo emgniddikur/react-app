@@ -1,7 +1,6 @@
 import {applyMiddleware, combineReducers, compose, createStore as reduxCreateStore} from "redux";
 import {itemReducer} from "../reducers/itemReducer";
 import {routerMiddleware, routerReducer} from "react-router-redux";
-import {authTokenReducer} from "../reducers/authTokenReducer";
 import {loadingReducer} from "../reducers/loadingReducer";
 import {logger} from "redux-logger/src";
 import {errorReducer} from "../reducers/errorReducer";
@@ -18,7 +17,6 @@ export const createStore = history => {
     combineReducers({
       itemReducer,
       routerReducer,
-      authTokenReducer,
       loadingReducer,
       errorReducer,
       loginReducer

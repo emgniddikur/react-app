@@ -3,6 +3,8 @@ import {
   CREATE_REQUEST,
   DELETE_REQUEST,
   INDEX_REQUEST,
+  LOG_IN_REQUEST,
+  LOG_OUT_REQUEST,
   SEARCH_REQUEST,
   SHOW_REQUEST,
   UPDATE_REQUEST
@@ -13,6 +15,14 @@ export const authRequest = authToken => ({
   payload: {
     authToken
   }
+});
+
+export const logInRequest = () => ({
+  type: LOG_IN_REQUEST
+});
+
+export const logOutRequest = () => ({
+  type: LOG_OUT_REQUEST
 });
 
 export const indexRequest = () => ({
