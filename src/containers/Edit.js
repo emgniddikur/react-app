@@ -1,5 +1,5 @@
 import React from "react";
-import {ItemForm} from "../components/ItemForm";
+import {ItemForm} from "../components/forms/ItemForm";
 import {connect} from "react-redux";
 import {inputDescription, inputImageSrc, inputPrice, inputTitle} from "../actions/items";
 import {updateRequest} from "../actions/requests";

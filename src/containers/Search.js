@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {SearchForm} from "../components/SearchForm";
+import {SearchForm} from "../components/forms/SearchForm";
 import {ItemList} from "../components/ItemList";
 import {connect} from "react-redux";
 import {inputKeyword} from "../actions/items";

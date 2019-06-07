@@ -1,34 +1,13 @@
 import React, {Fragment} from 'react';
-import {AppBar, Button, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import {connect} from "react-redux";
-import {logOutRequest} from "../actions/requests";
+import {ToIndexButton} from "../components/buttons/ToIndexButton";
+import {ToNewButton} from "../components/buttons/ToNewButton";
+import {ToSearchButton} from "../components/buttons/ToSearchButton";
+import LogOutButton from "../components/buttons/LogOutButton";
+import {ToAuthButton} from "../components/buttons/ToAuthButton";
 
-const Nav = ({history, isLoggedIn, logOutRequest}) => {
-  const handleClickToIndex = e => {
-    e.preventDefault();
-    history.push("/items");
-  };
-
-  const handleClickToNew = e => {
-    e.preventDefault();
-    history.push("/items/new");
-  };
-
-  const handleClickToSearch = e => {
-    e.preventDefault();
-    history.push("/items/search")
-  };
-
-  const handleClickToAuth = e => {
-    e.preventDefault();
-    history.push("/auth");
-  };
-
-  const handleClickLogOut = e => {
-    e.preventDefault();
-    logOutRequest();
-  };
-
+const Nav = ({history, isLoggedIn}) => {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -36,12 +15,12 @@ const Nav = ({history, isLoggedIn, logOutRequest}) => {
         {
           isLoggedIn ?
             <Fragment>
-              <Button color="inherit" onClick={e => handleClickToIndex(e)}>商品一覧</Button>
-              <Button color="inherit" onClick={e => handleClickToNew(e)}>新規登録</Button>
-              <Button color="inherit" onClick={e => handleClickToSearch(e)}>検索</Button>
-              <Button color="inherit" onClick={e => handleClickLogOut(e)}>ログアウト</Button>
-            </Fragment>
-            : <Button color="inherit" onClick={e => handleClickToAuth(e)}>認証</Button>
+              <ToIndexButton history={history}/>
+              <ToNewButton history={history}/>
+              <ToSearchButton history={history}/>
+              <LogOutButton/>
+            </Fragment> :
+            <ToAuthButton history={history}/>
         }
       </Toolbar>
     </AppBar>
@@ -51,6 +30,5 @@ const Nav = ({history, isLoggedIn, logOutRequest}) => {
 export default connect(
   state => ({
     isLoggedIn: state.loginReducer.isLoggedIn
-  }),
-  {logOutRequest}
+  })
 )(Nav);

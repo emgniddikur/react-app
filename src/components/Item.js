@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {Paper, Table, TableBody, TableCell, TableRow} from "@material-ui/core";
-import DeleteButton from "./DeleteButton";
-import {EditButton} from "./EditButton";
+import DeleteButton from "./buttons/DeleteButton";
+import {ToEditButton} from "./buttons/ToEditButton";
 
 export const Item = ({history, item}) => {
   return (
@@ -9,7 +9,7 @@ export const Item = ({history, item}) => {
       {item ?
         <Paper>
           <h1>{item.title}</h1>
-          <EditButton history={history} itemId={item.id}/>
+          <ToEditButton history={history} itemId={item.id}/>
           <DeleteButton itemId={item.id}/>
           <img src={item.imageSrc} alt="商品画像"/>
           <Table>
