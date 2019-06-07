@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {AppBar, Button, Toolbar, Typography} from "@material-ui/core";
 import {connect} from "react-redux";
 
-const Nav = ({history, login}) => {
+const Nav = ({history, isLoggedIn}) => {
   const handleClickToIndex = e => {
     e.preventDefault();
     history.push("/items");
@@ -28,7 +28,7 @@ const Nav = ({history, login}) => {
       <Toolbar>
         <Typography>商品管理アプリ</Typography>
         {
-          login ?
+          isLoggedIn ?
             <Fragment>
               <Button color="inherit" onClick={e => handleClickToIndex(e)}>商品一覧</Button>
               <Button color="inherit" onClick={e => handleClickToNew(e)}>新規登録</Button>
@@ -44,6 +44,6 @@ const Nav = ({history, login}) => {
 
 export default connect(
   state => ({
-    login: state.loginReducer.login
+    isLoggedIn: state.loginReducer.isLoggedIn
   })
 )(Nav);

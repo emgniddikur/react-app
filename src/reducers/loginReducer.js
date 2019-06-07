@@ -1,14 +1,14 @@
 import {LOG_IN, LOG_OUT} from "../constants/login";
 
-export const loginReducer = (state = {login: false}, action) => {
+export const loginReducer = (state = {isLoggedIn: false}, action) => {
   switch (action.type) {
     case LOG_IN:
       return {
-        login: true
+        isLoggedIn: true
       };
     case LOG_OUT:
       return {
-        login: false
+        isLoggedIn: false
       };
     default:
       return state;
