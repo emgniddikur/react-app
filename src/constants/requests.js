@@ -1,4 +1,6 @@
 export const AUTH_REQUEST = 'AUTH_REQUEST';
+export const LOG_IN_REQUEST = 'LOG_IN_REQUEST';
+export const LOG_OUT_REQUEST = 'LOG_OUT_REQUEST';
 export const INDEX_REQUEST = 'INDEX_REQUEST';
 export const CREATE_REQUEST = 'CREATE_REQUEST';
 export const SHOW_REQUEST = 'SHOW_REQUEST';
