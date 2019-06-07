@@ -1,4 +1,4 @@
-import {call, fork, put, select, take, takeEvery} from 'redux-saga/effects';
+import {call, put, select, takeEvery} from 'redux-saga/effects';
 import {push} from "react-router-redux";
 import {
   AUTH_REQUEST,
@@ -117,50 +117,47 @@ function* runAuthRequest(action) {
   }
 }
 
-function* handleLocationChange() {
-  while (true) {
-    const {payload} = yield take('@@router/LOCATION_CHANGE');
-    const message = yield select(getMessage);
-    if (message) {
-      yield put(resetErrorMessage());
-    }
-    switch (true) {
-      case /^\/items\/?$/.test(payload.pathname):
-        yield put(indexRequest());
-        break;
-      case /^\/items\/new\/?$/.test(payload.pathname):
-        yield put(inputItem(initialItemState.formItem));
-        break;
-      case /^\/items\/search\/?$/.test(payload.pathname):
-        if (/\?keyword=.*/.test(payload.search)) {
-          const keyword = decodeURIComponent(payload.search.match(/\?keyword=(.*)/)[1]);
-          yield put(searchRequest(keyword));
-        } else {
-          yield put(inputKeyword(initialItemState.keyword));
-          yield put(setSearchResults(initialItemState.searchResults));
-        }
-        break;
-      case /^\/items\/\d+\/?$/.test(payload.pathname): {
-        const id = payload.pathname.match(/^\/items\/(\d+)\/?$/)[1];
-        yield put(showRequest(id));
-        break;
+function* runLocationChange(action) {
+  const message = yield select(getMessage);
+  if (message) {
+    yield put(resetErrorMessage());
+  }
+  switch (true) {
+    case /^\/items\/?$/.test(action.payload.pathname):
+      yield put(indexRequest());
+      break;
+    case /^\/items\/new\/?$/.test(action.payload.pathname):
+      yield put(inputItem(initialItemState.formItem));
+      break;
+    case /^\/items\/search\/?$/.test(action.payload.pathname):
+      if (/\?keyword=.*/.test(action.payload.search)) {
+        const keyword = decodeURIComponent(action.payload.search.match(/\?keyword=(.*)/)[1]);
+        yield put(searchRequest(keyword));
+      } else {
+        yield put(inputKeyword(initialItemState.keyword));
+        yield put(setSearchResults(initialItemState.searchResults));
       }
-      case /^\/items\/\d+\/edit\/?$/.test(payload.pathname): {
-        const items = yield select(getItems);
-        const id = payload.pathname.match(/^\/items\/(\d+)\/edit\/?$/)[1];
-        const item = items.find(e => e.id === Number(id));
-        yield put(inputItem(item));
-        break;
-      }
-      default:
-        break;
+      break;
+    case /^\/items\/\d+\/?$/.test(action.payload.pathname): {
+      const id = action.payload.pathname.match(/^\/items\/(\d+)\/?$/)[1];
+      yield put(showRequest(id));
+      break;
     }
+    case /^\/items\/\d+\/edit\/?$/.test(action.payload.pathname): {
+      const items = yield select(getItems);
+      const id = action.payload.pathname.match(/^\/items\/(\d+)\/edit\/?$/)[1];
+      const item = items.find(e => e.id === Number(id));
+      yield put(inputItem(item));
+      break;
+    }
+    default:
+      break;
   }
 }
 
 export default function* rootSaga() {
   yield put(push('/auth'));
-  yield fork(handleLocationChange);
+  yield takeEvery('@@router/LOCATION_CHANGE', runLocationChange);
   yield takeEvery(AUTH_REQUEST, runAuthRequest);
   yield takeEvery(INDEX_REQUEST, runIndexRequest);
   yield takeEvery(CREATE_REQUEST, runCreateRequest);
