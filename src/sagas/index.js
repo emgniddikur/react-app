@@ -141,14 +141,14 @@ function* handleLocationChange() {
         }
         break;
       case /^\/items\/\d+\/?$/.test(payload.pathname): {
-        const id = payload.pathname.match(/(\d+)/)[0];
+        const id = payload.pathname.match(/^\/items\/(\d+)\/?$/)[1];
         yield put(showRequest(id));
         break;
       }
       case /^\/items\/\d+\/edit\/?$/.test(payload.pathname): {
         const items = yield select(getItems);
-        const id = payload.pathname.match(/^\/items\/(\d+)\/edit\/?$/)[0];
-        const item = items.filter(e => e.id === Number(id))[0];
+        const id = payload.pathname.match(/^\/items\/(\d+)\/edit\/?$/)[1];
+        const item = items.find(e => e.id === Number(id));
         yield put(inputItem(item));
         break;
       }

@@ -13,8 +13,8 @@ import {ErrorPage} from "../components/ErrorPage";
 export const App = () => {
   return (
     <Fragment>
-      <Nav/>
-      <ErrorMessage/>
+      <Route component={Nav}/>
+      <Route component={ErrorMessage}/>
       <Route exact path="/auth" component={Auth}/>
       <Switch>
         <Route exact path="/items" component={Index}/>
