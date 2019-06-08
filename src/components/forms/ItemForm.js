@@ -91,6 +91,8 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
               id="description"
               label="商品説明"
               fullWidth
+              multiline
+              rows="5"
               value={formItem.description}
               onChange={e => inputDescription(e.target.value)}
             />
