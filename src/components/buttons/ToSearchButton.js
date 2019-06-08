@@ -7,5 +7,11 @@ export const ToSearchButton = ({history}) => {
     history.push("/items/search")
   };
 
-  return <Button color="inherit" onClick={e => handleClick(e)}>検索</Button>;
+  return (
+    <Button
+      onClick={e => handleClick(e)}
+    >
+      検索
+    </Button>
+  );
 };

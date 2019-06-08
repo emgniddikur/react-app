@@ -7,5 +7,11 @@ export const ToNewButton = ({history}) => {
     history.push('/items/new');
   };
 
-  return <Button color="inherit" onClick={e => handleClick(e)}>新規登録</Button>;
+  return (
+    <Button
+      onClick={e => handleClick(e)}
+    >
+      新規登録
+    </Button>
+  );
 };

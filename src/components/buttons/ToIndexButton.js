@@ -7,5 +7,11 @@ export const ToIndexButton = ({history}) => {
     history.push("/items");
   };
 
-  return <Button color="inherit" onClick={e => handleClick(e)}>商品一覧</Button>;
+  return (
+    <Button
+      onClick={e => handleClick(e)}
+    >
+      商品一覧
+    </Button>
+  );
 };

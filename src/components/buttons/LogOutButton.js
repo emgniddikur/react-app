@@ -9,7 +9,15 @@ const LogOutButton = ({logOutRequest}) => {
     logOutRequest();
   };
 
-  return <Button color="inherit" onClick={e => handleClick(e)}>ログアウト</Button>;
+  return (
+    <Button
+      color="primary"
+      variant="outlined"
+      onClick={e => handleClick(e)}
+    >
+      ログアウト
+    </Button>
+  );
 };
 
 export default connect(

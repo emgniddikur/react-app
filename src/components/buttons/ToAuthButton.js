@@ -7,5 +7,13 @@ export const ToAuthButton = ({history}) => {
     history.push("/auth");
   };
 
-  return <Button variant="contained" onClick={e => handleClick(e)}>認証</Button>;
+  return (
+    <Button
+      color="primary"
+      variant="outlined"
+      onClick={e => handleClick(e)}
+    >
+      認証
+    </Button>
+  );
 };
