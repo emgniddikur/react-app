@@ -36,13 +36,6 @@ export const createRequest = formItem => ({
   }
 });
 
-export const showRequest = id => ({
-  type: SHOW_REQUEST,
-  payload: {
-    id
-  }
-});
-
 export const updateRequest = (id, formItem) => ({
   type: UPDATE_REQUEST,
   payload: {

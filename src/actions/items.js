@@ -7,7 +7,6 @@ import {
   INPUT_KEYWORD,
   INPUT_PRICE,
   INPUT_TITLE,
-  SET_ITEM,
   SET_ITEMS,
   SET_SEARCH_RESULTS,
   UPDATE_ITEM
@@ -17,13 +16,6 @@ export const setItems = items => ({
   type: SET_ITEMS,
   payload: {
     items
-  }
-});
-
-export const setItem = item => ({
-  type: SET_ITEM,
-  payload: {
-    item
   }
 });
 

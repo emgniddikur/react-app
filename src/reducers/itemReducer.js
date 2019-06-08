@@ -21,11 +21,6 @@ export const itemReducer = (state = initialItemState, action) => {
         ...state,
         items: action.payload.items
       };
-    case SET_ITEM:
-      return {
-        ...state,
-        item: action.payload.item
-      };
     case INPUT_TITLE:
       return {
         ...state,

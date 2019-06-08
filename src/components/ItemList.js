@@ -42,10 +42,8 @@ export const ItemList = ({history, items}) => {
                   <Card className={classes.card}>
                     <CardMedia
                       className={classes.cardMedia}
-                      image="https://source.unsplash.com/random"
-                      title="Image title"
+                      image={item.imageSrc}
                     />
-                    <img src={item.imageSrc}/>
                     <CardContent className={classes.cardContent}>
                       <Typography gutterBottom variant="h5" component="h2">
                         {item.title}
@@ -54,7 +52,7 @@ export const ItemList = ({history, items}) => {
                         {item.description}
                       </Typography>
                       <Typography>
-                        {item.price}
+                        ¥{item.price}
                       </Typography>
                     </CardContent>
                     <CardActions>

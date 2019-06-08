@@ -34,22 +34,6 @@ export const fetchCreate = (authToken, formItem) => {
     });
 };
 
-export const fetchShow = (id, authToken) => {
-  return axios
-    .get(`${baseUrl}/${id}`, {
-      headers: {
-        authToken
-      }
-    })
-    .then(response => {
-      const item = response.data;
-      return {item};
-    })
-    .catch(error => {
-      return {error};
-    });
-};
-
 export const fetchUpdate = (id, authToken, formItem) => {
   return axios
     .put(`${baseUrl}/${id}`, formItem, {

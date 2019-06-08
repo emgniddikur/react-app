@@ -1,5 +1,4 @@
 export const SET_ITEMS = 'SET_ITEMS';
-export const SET_ITEM = 'SET_ITEM';
 export const SET_SEARCH_RESULTS = 'SET_SEARCH_RESULTS';
 export const INPUT_TITLE = 'INPUT_TITLE';
 export const INPUT_DESCRIPTION = 'INPUT_DESCRIPTION';

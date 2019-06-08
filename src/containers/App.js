@@ -6,7 +6,6 @@ import Index from "./Index";
 import New from "./New";
 import Search from "./Search";
 import Auth from "./Auth";
-import Show from "./Show";
 import Edit from "../containers/Edit";
 import {ErrorPage} from "../components/ErrorPage";
 import {logInRequest} from "../actions/requests";
@@ -27,7 +26,6 @@ class App extends Component {
           <Route exact path="/items" component={Index}/>
           <Route exact path="/items/new" component={New}/>
           <Route path="/items/search" component={Search}/>
-          <Route exact path="/items/:id" component={Show}/>
           <Route
             exact path="/items/:id/edit"
             render={
