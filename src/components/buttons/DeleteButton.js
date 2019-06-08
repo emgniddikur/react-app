@@ -9,7 +9,7 @@ const DeleteButton = ({itemId, deleteRequest}) => {
     deleteRequest(itemId);
   };
 
-  return <Button variant="contained" color="secondary" onClick={e => handleClick(e)}>削除</Button>;
+  return <Button color="secondary" onClick={e => handleClick(e)}>削除</Button>;
 };
 
 export default connect(

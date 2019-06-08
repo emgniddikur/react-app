@@ -7,5 +7,5 @@ export const ToEditButton = ({history, itemId}) => {
     history.push(`/items/${itemId}/edit`);
   };
 
-  return <Button variant="contained" onClick={e => handleClick(e)}>編集</Button>;
+  return <Button color="primary" onClick={e => handleClick(e)}>編集</Button>;
 };
