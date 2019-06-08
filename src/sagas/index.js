@@ -8,7 +8,6 @@ import {
   LOG_IN_REQUEST,
   LOG_OUT_REQUEST,
   SEARCH_REQUEST,
-  SHOW_REQUEST,
   UPDATE_REQUEST
 } from "../constants/requests";
 import * as API from "../api/api";
@@ -17,13 +16,12 @@ import {
   deleteItem,
   inputItem,
   inputKeyword,
-  setItem,
   setItems,
   setSearchResults,
   updateItem
 } from "../actions/items";
 import {getItems, getMessage} from "../selectors/index";
-import {indexRequest, searchRequest, showRequest} from "../actions/requests";
+import {indexRequest, searchRequest} from "../actions/requests";
 import {initialItemState} from "../reducers/initialItemState";
 import {fetchFailure, resetErrorMessage} from "../actions/errors";
 import {logIn, logOut} from "../actions/logIns";
@@ -68,17 +66,6 @@ function* runUpdateRequest(action) {
   if (item && !error) {
     yield put(updateItem(id, item));
     yield put(push('/items'));
-  } else {
-    yield processAfterError(error);
-  }
-}
-
-function* runShowRequest(action) {
-  const id = action.payload.id;
-  const authToken = localStorage.getItem('authToken');
-  const {item, error} = yield call(API.fetchShow, id, authToken);
-  if (item && !error) {
-    yield put(setItem(item));
   } else {
     yield processAfterError(error);
   }
@@ -160,11 +147,6 @@ function* runLocationChange(action) {
         yield put(setSearchResults(initialItemState.searchResults));
       }
       break;
-    case /^\/items\/\d+\/?$/.test(action.payload.pathname): {
-      const id = action.payload.pathname.match(/^\/items\/(\d+)\/?$/)[1];
-      yield put(showRequest(id));
-      break;
-    }
     case /^\/items\/\d+\/edit\/?$/.test(action.payload.pathname): {
       const items = yield select(getItems);
       const id = action.payload.pathname.match(/^\/items\/(\d+)\/edit\/?$/)[1];
@@ -184,7 +166,6 @@ export default function* rootSaga() {
   yield takeEvery('@@router/LOCATION_CHANGE', runLocationChange);
   yield takeEvery(INDEX_REQUEST, runIndexRequest);
   yield takeEvery(CREATE_REQUEST, runCreateRequest);
-  yield takeEvery(SHOW_REQUEST, runShowRequest);
   yield takeEvery(UPDATE_REQUEST, runUpdateRequest);
   yield takeEvery(DELETE_REQUEST, runDeleteRequest);
   yield takeEvery(SEARCH_REQUEST, runSearchRequest);
