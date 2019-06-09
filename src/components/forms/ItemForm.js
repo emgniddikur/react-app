@@ -45,18 +45,13 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
         padding: theme.spacing(3),
       },
     },
-    image: {
-      objectFit: 'contain',
-      height: 100
-    },
     inputFileBtnHide: {
       opacity: 0,
       appearance: "none",
-      position: "absolute"
+      position: "absolute",
     },
     button: {
       marginTop: theme.spacing(3),
-      marginLeft: theme.spacing(1),
     },
   }));
 

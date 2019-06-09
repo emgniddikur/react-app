@@ -21,10 +21,6 @@ export const ItemList = ({history, items}) => {
       display: 'flex',
       flexDirection: 'column',
     },
-    image: {
-      objectFit: 'contain',
-      height: 200
-    },
     cardContent: {
       flexGrow: 1,
     }
