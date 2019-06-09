@@ -3,12 +3,12 @@ import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {ToEditButton} from "./buttons/ToEditButton";
 import DeleteButton from "./buttons/DeleteButton";
+import {ItemImage} from "./ItemImage";
 
 export const ItemList = ({history, items}) => {
   const useStyles = makeStyles(theme => ({
@@ -21,8 +21,9 @@ export const ItemList = ({history, items}) => {
       display: 'flex',
       flexDirection: 'column',
     },
-    cardMedia: {
-      paddingTop: '56.25%', // 16:9
+    image: {
+      objectFit: 'contain',
+      height: 200
     },
     cardContent: {
       flexGrow: 1,
@@ -40,10 +41,7 @@ export const ItemList = ({history, items}) => {
               return (
                 <Grid item key={item.id} xs={12} sm={6} md={4}>
                   <Card className={classes.card}>
-                    <CardMedia
-                      className={classes.cardMedia}
-                      image={item.imageSrc}
-                    />
+                    <ItemImage imageSrc={item.imageSrc}/>
                     <CardContent className={classes.cardContent}>
                       <Typography gutterBottom variant="h5" component="h2">
                         {item.title}

@@ -6,16 +6,17 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import {makeStyles} from '@material-ui/core/styles';
+import {ItemImage} from "../ItemImage";
 
 export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputPrice, inputImageSrc, createRequest, updateRequest}) => {
   const handleFileChange = e => {
     e.preventDefault();
+    const file = e.target.files[0];
     const reader = new FileReader();
     reader.onload = e => {
       inputImageSrc(e.target.result);
-      document.getElementById("image").innerHTML = `<img src="${e.target.result}"/><br/>`;
     };
-    reader.readAsDataURL(e.target.files[0]);
+    reader.readAsDataURL(file);
   };
 
   const handleClick = e => {
@@ -44,17 +45,20 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
         padding: theme.spacing(3),
       },
     },
+    image: {
+      objectFit: 'contain',
+      height: 100
+    },
+    inputFileBtnHide: {
+      opacity: 0,
+      appearance: "none",
+      position: "absolute"
+    },
     button: {
       marginTop: theme.spacing(3),
       marginLeft: theme.spacing(1),
     },
   }));
-
-  const inputFileBtnHide = {
-    opacity: 0,
-    appearance: "none",
-    position: "absolute"
-  };
 
   const classes = useStyles();
 
@@ -65,21 +69,17 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
         <Paper className={classes.paper}>
           <Container component="main" maxWidth="xs">
             <Typography component="h1" variant="h4" align="center">
-              新規作成
+              {itemId ? "編集" : "新規登録"}
             </Typography>
-            <Button component="label">
-              商品画像
+            <Button fullWidth component="label">
+              <ItemImage imageSrc={formItem.imageSrc}/>
               <input
                 id="image-src"
                 type="file"
                 onChange={e => handleFileChange(e)}
-                style={inputFileBtnHide}
+                className={classes.inputFileBtnHide}
               />
             </Button>
-            <output id="image">
-              <img
-                src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMIAAAEDCAMAAABQ/CumAAAAA1BMVEX///+nxBvIAAAASElEQVR4nO3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIB7A8VJAAEcmy75AAAAAElFTkSuQmCC"/>
-            </output>
             <TextField
               id="title"
               label="商品タイトル"
@@ -92,7 +92,7 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
               label="商品説明"
               fullWidth
               multiline
-              rows="5"
+              rows="3"
               value={formItem.description}
               onChange={e => inputDescription(e.target.value)}
             />
@@ -104,8 +104,14 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
               value={formItem.price}
               onChange={e => inputPrice(e.target.value)}
             />
-            <Button className={classes.button} variant="contained" color="primary" onClick={e => handleClick(e)}>
-              {itemId ? "更新" : "新規登録"}
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={e => handleClick(e)}
+            >
+              送信
             </Button>
           </Container>
         </Paper>
