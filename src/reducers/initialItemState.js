@@ -4,8 +4,8 @@ export const initialItemState = {
     id: null,
     title: '',
     description: '',
-    price: '',
-    imageSrc: ''
+    price: null,
+    imageSrc: null
   },
   keyword: '',
   searchResults: []

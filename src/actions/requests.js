@@ -6,7 +6,6 @@ import {
   LOG_IN_REQUEST,
   LOG_OUT_REQUEST,
   SEARCH_REQUEST,
-  SHOW_REQUEST,
   UPDATE_REQUEST
 } from "../constants/requests";
 
