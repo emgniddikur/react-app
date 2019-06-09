@@ -5,20 +5,22 @@ const ErrorMessage = ({message, details}) => {
   return (
     <Fragment>
       {
-        message &&
-        <Fragment>
-          <p>{message}</p>
-          {
-            details &&
-            <ul>
-              {
-                Object.values(details).map((value, index) => {
-                  return <li key={index}>{value}</li>;
-                })
-              }
-            </ul>
-          }
-        </Fragment>
+        message && (
+          <Fragment>
+            <p>{message}</p>
+            {
+              details && (
+                <ul>
+                  {
+                    details.map((detail, index) => {
+                      return <li key={index}>{detail}</li>;
+                    })
+                  }
+                </ul>
+              )
+            }
+          </Fragment>
+        )
       }
     </Fragment>
   )

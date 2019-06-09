@@ -10,6 +10,8 @@ import Edit from "../containers/Edit";
 import {ErrorPage} from "../components/ErrorPage";
 import {logInRequest} from "../actions/requests";
 import {connect} from "react-redux";
+import '../css/Fetching.css';
+import Fetching from "../components/Fetching";
 
 class App extends Component {
   componentWillMount() {
@@ -19,6 +21,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
+        <Fetching/>
         <Route component={Nav}/>
         <Route component={ErrorMessage}/>
         <Route exact path="/auth" component={Auth}/>
@@ -40,6 +43,8 @@ class App extends Component {
 }
 
 export default connect(
-  null,
+  state => ({
+    isFetching: state.loadingReducer.isFetching
+  }),
   {logInRequest}
 )(App);

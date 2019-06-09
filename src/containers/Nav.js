@@ -49,14 +49,16 @@ const Nav = ({history, isLoggedIn}) => {
           </Typography>
           <nav>
             {
-              isLoggedIn ?
+              isLoggedIn ? (
                 <Fragment>
                   <ToIndexButton history={history} className={classes.button}/>
                   <ToNewButton history={history} className={classes.button}/>
                   <ToSearchButton history={history} className={classes.button}/>
                   <LogOutButton className={classes.button}/>
-                </Fragment> :
+                </Fragment>
+              ) : (
                 <ToAuthButton history={history} className={classes.button}/>
+              )
             }
           </nav>
         </Toolbar>
