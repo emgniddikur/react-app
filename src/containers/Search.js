@@ -7,13 +7,8 @@ import {inputKeyword} from "../actions/items";
 const Search = ({history, isFetching, keyword, searchResults, inputKeyword}) => {
   return (
     <Fragment>
-      {
-        isFetching ? 'ロード中...' :
-          <Fragment>
-            <SearchForm history={history} keyword={keyword} inputKeyword={inputKeyword}/>
-            <ItemList history={history} items={searchResults}/>
-          </Fragment>
-      }
+      <SearchForm history={history} keyword={keyword} inputKeyword={inputKeyword}/>
+      <ItemList history={history} items={searchResults}/>
     </Fragment>
   );
 };
