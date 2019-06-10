@@ -3,11 +3,11 @@ import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import {connect} from "react-redux";
 import {ToIndexButton} from "../components/buttons/ToIndexButton";
 import {ToNewButton} from "../components/buttons/ToNewButton";
-import {ToSearchButton} from "../components/buttons/ToSearchButton";
 import LogOutButton from "../components/buttons/LogOutButton";
 import {ToAuthButton} from "../components/buttons/ToAuthButton";
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import SearchForm from "../components/forms/SearchForm";
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -42,25 +42,23 @@ const Nav = ({history, isLoggedIn}) => {
   return (
     <Fragment>
       <CssBaseline/>
-      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+      <AppBar position="static" color="primary" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             商品管理アプリ
           </Typography>
-          <nav>
-            {
-              isLoggedIn ? (
-                <Fragment>
-                  <ToIndexButton history={history} className={classes.button}/>
-                  <ToNewButton history={history} className={classes.button}/>
-                  <ToSearchButton history={history} className={classes.button}/>
-                  <LogOutButton className={classes.button}/>
-                </Fragment>
-              ) : (
-                <ToAuthButton history={history} className={classes.button}/>
-              )
-            }
-          </nav>
+          {
+            isLoggedIn ? (
+              <Fragment>
+                <SearchForm history={history}/>
+                <ToIndexButton history={history} className={classes.button}/>
+                <ToNewButton history={history} className={classes.button}/>
+                <LogOutButton className={classes.button}/>
+              </Fragment>
+            ) : (
+              <ToAuthButton history={history} className={classes.button}/>
+            )
+          }
         </Toolbar>
       </AppBar>
     </Fragment>

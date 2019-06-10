@@ -1,16 +1,9 @@
-import React, {Fragment} from 'react';
-import {SearchForm} from "../components/forms/SearchForm";
+import React from 'react';
 import {ItemList} from "../components/ItemList";
 import {connect} from "react-redux";
-import {inputKeyword} from "../actions/items";
 
-const Search = ({history, isFetching, keyword, searchResults, inputKeyword}) => {
-  return (
-    <Fragment>
-      <SearchForm history={history} keyword={keyword} inputKeyword={inputKeyword}/>
-      <ItemList history={history} items={searchResults}/>
-    </Fragment>
-  );
+const Search = ({history, isFetching, keyword, searchResults}) => {
+  return <ItemList history={history} items={searchResults}/>;
 };
 
 export default connect(
@@ -18,6 +11,5 @@ export default connect(
     isFetching: state.loadingReducer.isFetching,
     keyword: state.itemReducer.keyword,
     searchResults: state.itemReducer.searchResults
-  }),
-  {inputKeyword}
+  })
 )(Search);
