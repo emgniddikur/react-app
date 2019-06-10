@@ -74,7 +74,7 @@ export const itemReducer = (state = initialItemState, action) => {
         items: state.items
           .map(e => {
             if (e.id === Number(action.payload.id)) {
-              return {...e, ...action.payload.item}
+              return action.payload.item;
             }
             return e;
           }),
