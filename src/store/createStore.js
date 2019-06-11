@@ -7,10 +7,21 @@ import {errorReducer} from "../reducers/errorReducer";
 import {loginReducer} from "../reducers/loginReducer";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/index';
+import createSagaMonitor from '@clarketm/saga-monitor'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const sagaMiddleware = createSagaMiddleware();
+const config = {
+  level: "log",
+  rootSagaStart: true,
+  effectTrigger: true,
+  effectResolve: true,
+  actionDispatch: true
+};
+
+const sagaMiddleware = createSagaMiddleware({
+  sagaMonitor: createSagaMonitor(config)
+});
 
 export const createStore = history => {
   const store = reduxCreateStore(
