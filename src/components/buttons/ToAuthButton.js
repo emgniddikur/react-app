@@ -13,7 +13,7 @@ export const ToAuthButton = ({history}) => {
       variant="outlined"
       onClick={e => handleClick(e)}
     >
-      認証
+      ログイン
     </Button>
   );
 };
