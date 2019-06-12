@@ -1,4 +1,4 @@
-.c-loader__mask {
+.loading {
   position: fixed;
   z-index: 9;
   top: 50%;
@@ -7,7 +7,7 @@
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background-color: hsla(0, 0%, 100%, 1);
+  background-color: hsla(0, 0%, 100%, 0.7);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,5 +17,5 @@
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  opacity: 1;
+  opacity: 0.7;
 }

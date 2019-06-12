@@ -3,32 +3,28 @@ import {connect} from "react-redux";
 import {makeStyles} from '@material-ui/core/styles';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 
-const useStyles = makeStyles(theme => ({
-  error: {
-    backgroundColor: theme.palette.error.dark,
-    margin: theme.spacing(1)
-  },
-  icon: {
-    fontSize: 20,
-    opacity: 0.9,
-    marginRight: theme.spacing(1)
-  },
-  message: {
-    display: 'flex',
-    alignItems: 'center'
-  },
-  list: {
-    listStyle: 'square',
-    marginLeft: 25
-  }
-}));
-
 const ErrorMessage = ({message, details}) => {
-  const classes = useStyles();
+  const useStyles = makeStyles(theme => ({
+    error: {
+      backgroundColor: theme.palette.error.dark,
+      margin: theme.spacing(1)
+    },
+    icon: {
+      fontSize: 20,
+      opacity: 0.9,
+      marginRight: theme.spacing(1)
+    },
+    message: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    list: {
+      listStyle: 'square',
+      marginLeft: 25
+    }
+  }));
 
-  if (!message) {
-    return null;
-  }
+  const classes = useStyles();
 
   return (
     <SnackbarContent

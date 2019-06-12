@@ -9,15 +9,15 @@ import {
   UPDATE_REQUEST
 } from "../constants/requests";
 
+export const logInRequest = () => ({
+  type: LOG_IN_REQUEST
+});
+
 export const authRequest = authToken => ({
   type: AUTH_REQUEST,
   payload: {
     authToken
   }
-});
-
-export const logInRequest = () => ({
-  type: LOG_IN_REQUEST
 });
 
 export const logOutRequest = () => ({

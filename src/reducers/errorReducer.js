@@ -1,4 +1,5 @@
-import {FETCH_FAILURE, RESET_ERROR_MESSAGE} from "../constants/errors";
+import {FAILURE_FETCH} from "../constants/errors";
+import {LOCATION_CHANGE} from "react-router-redux";
 
 export const errorReducer = (
   state = {
@@ -7,12 +8,12 @@ export const errorReducer = (
   }, action
 ) => {
   switch (action.type) {
-    case FETCH_FAILURE:
+    case FAILURE_FETCH:
       return {
         message: action.payload.error.response.data.message,
         details: action.payload.error.response.data.details
       };
-    case RESET_ERROR_MESSAGE:
+    case LOCATION_CHANGE:
       return {
         message: null,
         details: null

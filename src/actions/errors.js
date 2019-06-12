@@ -1,12 +1,8 @@
-import {FETCH_FAILURE, RESET_ERROR_MESSAGE} from "../constants/errors";
+import {FAILURE_FETCH} from "../constants/errors";
 
-export const fetchFailure = error => ({
-  type: FETCH_FAILURE,
+export const failureFetch = error => ({
+  type: FAILURE_FETCH,
   payload: {
     error
   }
-});
-
-export const resetErrorMessage = () => ({
-  type: RESET_ERROR_MESSAGE
 });
