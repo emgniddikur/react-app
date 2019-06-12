@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {ToIndexButton} from "../components/buttons/ToIndexButton";
 import {ToNewButton} from "../components/buttons/ToNewButton";
 import LogOutButton from "../components/buttons/LogOutButton";
-import {ToAuthButton} from "../components/buttons/ToAuthButton";
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SearchForm from "../components/forms/SearchForm";
@@ -42,22 +41,19 @@ const Nav = ({history, isLoggedIn}) => {
   return (
     <Fragment>
       <CssBaseline/>
-      <AppBar position="static" color="primary" elevation={0} className={classes.appBar}>
+      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             商品管理アプリ
           </Typography>
           {
-            isLoggedIn ? (
-              <Fragment>
-                <SearchForm history={history}/>
-                <ToIndexButton history={history} className={classes.button}/>
-                <ToNewButton history={history} className={classes.button}/>
-                <LogOutButton className={classes.button}/>
-              </Fragment>
-            ) : (
-              <ToAuthButton history={history} className={classes.button}/>
-            )
+            isLoggedIn &&
+            <Fragment>
+              <SearchForm history={history}/>
+              <ToIndexButton history={history} className={classes.button}/>
+              <ToNewButton history={history} className={classes.button}/>
+              <LogOutButton className={classes.button}/>
+            </Fragment>
           }
         </Toolbar>
       </AppBar>
