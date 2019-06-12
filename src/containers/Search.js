@@ -8,7 +8,7 @@ const Search = ({history, isFetching, keyword, searchResults}) => {
 
 export default connect(
   state => ({
-    isFetching: state.loadingReducer.isFetching,
+    isLoading: state.loadingReducer.isLoading,
     keyword: state.itemReducer.keyword,
     searchResults: state.itemReducer.searchResults
   })

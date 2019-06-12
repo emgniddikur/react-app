@@ -8,28 +8,44 @@ import Search from "./Search";
 import Auth from "./Auth";
 import Edit from "../containers/Edit";
 import {ErrorPage} from "../components/ErrorPage";
-import '../css/Fetching.css';
-import Fetching from "../components/Fetching";
+import '../css/Loading.css';
+import Fetching from "./Loading";
+import {connect} from "react-redux";
 
-export const App = () => {
+const App = ({isLoggedIn, message}) => {
   return (
     <Fragment>
       <Fetching/>
       <Route component={Nav}/>
-      <Route component={ErrorMessage}/>
+      {
+        message &&
+        <Route component={ErrorMessage}/>
+      }
       <Route exact path="/auth" component={Auth}/>
-      <Switch>
-        <Route exact path="/items" component={Index}/>
-        <Route exact path="/items/new" component={New}/>
-        <Route path="/items/search" component={Search}/>
-        <Route
-          exact path="/items/:id/edit"
-          render={
-            ({match}) => <Edit itemId={match.params.id}/>
-          }
-        />
-      </Switch>
+      {
+        isLoggedIn &&
+        <Fragment>
+          <Switch>
+            <Route exact path="/items" component={Index}/>
+            <Route exact path="/items/new" component={New}/>
+            <Route path="/items/search" component={Search}/>
+            <Route
+              exact path="/items/:id/edit"
+              render={
+                ({match}) => <Edit itemId={match.params.id}/>
+              }
+            />
+          </Switch>
+        </Fragment>
+      }
       <Route exact path="/error" component={ErrorPage}/>
     </Fragment>
   );
 };
+
+export default connect(
+  state => ({
+    isLoggedIn: state.loginReducer.isLoggedIn,
+    message: state.errorReducer.message
+  })
+)(App);

@@ -1,12 +1,12 @@
-import {LOG_IN, LOG_OUT} from "../constants/logins";
+import {SUCCESS_LOG_IN, SUCCESS_LOG_OUT} from "../constants/logins";
 
 export const loginReducer = (state = {isLoggedIn: false}, action) => {
   switch (action.type) {
-    case LOG_IN:
+    case SUCCESS_LOG_IN:
       return {
         isLoggedIn: true
       };
-    case LOG_OUT:
+    case SUCCESS_LOG_OUT:
       return {
         isLoggedIn: false
       };

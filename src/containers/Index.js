@@ -2,7 +2,7 @@ import React from 'react';
 import {ItemList} from "../components/ItemList";
 import {connect} from "react-redux";
 
-const Index = ({history, isFetching, items}) => {
+const Index = ({history, isLoading, items}) => {
   return (
     <ItemList
       history={history}
@@ -13,7 +13,7 @@ const Index = ({history, isFetching, items}) => {
 
 export default connect(
   state => ({
-    isFetching: state.loadingReducer.isFetching,
+    isLoading: state.loadingReducer.isLoading,
     items: state.itemReducer.items
   })
 )(Index);
