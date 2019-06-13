@@ -25,7 +25,7 @@ import {indexRequest, logInRequest, searchRequest} from "../actions/requests";
 import {initialItemState} from "../reducers/initialItemState";
 import {failureFetch} from "../actions/errors";
 import {successLogIn, successLogOut} from "../actions/logIns";
-import {SUCCESS_LOG_IN} from "../constants/logins";
+import {SUCCESS_LOG_IN} from "../constants/logIns";
 
 function* runSearchRequest(action) {
   const keyword = action.payload.keyword;

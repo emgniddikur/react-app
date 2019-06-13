@@ -4,7 +4,7 @@ import {routerMiddleware, routerReducer} from "react-router-redux";
 import {loadingReducer} from "../reducers/loadingReducer";
 import {logger} from "redux-logger/src";
 import {errorReducer} from "../reducers/errorReducer";
-import {loginReducer} from "../reducers/loginReducer";
+import {logInReducer} from "../reducers/logInReducer";
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/index';
 import createSagaMonitor from '@clarketm/saga-monitor'
@@ -30,7 +30,7 @@ export const createStore = history => {
       routerReducer,
       loadingReducer,
       errorReducer,
-      loginReducer
+      loginReducer: logInReducer
     }),
     composeEnhancers(
       applyMiddleware(
