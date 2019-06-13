@@ -2,11 +2,11 @@ export const initialItemState = {
   items: [],
   formItem: {
     id: null,
-    title: null,
-    description: null,
-    price: null,
-    imageSrc: null
+    title: '',
+    description: '',
+    price: 0,
+    imageSrc: ''
   },
-  keyword: null,
+  keyword: '',
   searchResults: []
 };
