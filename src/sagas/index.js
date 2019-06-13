@@ -1,4 +1,4 @@
-import {all, call, put, select, takeEvery} from 'redux-saga/effects';
+import {all, call, put, select, take, takeEvery} from 'redux-saga/effects';
 import {LOCATION_CHANGE, push} from "react-router-redux";
 import {
   AUTH_REQUEST,
@@ -25,6 +25,7 @@ import {indexRequest, logInRequest, searchRequest} from "../actions/requests";
 import {initialItemState} from "../reducers/initialItemState";
 import {failureFetch} from "../actions/errors";
 import {successLogIn, successLogOut} from "../actions/logIns";
+import {SUCCESS_LOG_IN} from "../constants/logins";
 
 function* runSearchRequest(action) {
   const keyword = action.payload.keyword;
@@ -83,7 +84,13 @@ function* runIndexRequest() {
 }
 
 function* runLocationChange(action) {
+  const isLoggedIn = yield select(getIsLoggedIn);
+  if (!isLoggedIn) {
+    yield take(SUCCESS_LOG_IN);
+  }
   switch (true) {
+    case /^\/auth\/?$/.test(action.payload.pathname):
+      break;
     case /^\/items\/?$/.test(action.payload.pathname):
       yield put(indexRequest());
       break;
@@ -106,6 +113,7 @@ function* runLocationChange(action) {
       yield put(inputItem(item));
       break;
     default:
+      yield put(failureFetch('存在しないページです。', null));
       break;
   }
 }
@@ -136,7 +144,10 @@ function* processAfterError(error) {
   } else if (status === 404 || status === 500) {
     yield put(push('/error'));
   }
-  yield put(failureFetch(error));
+  yield put(failureFetch(
+    error.response.data.message,
+    error.response.data.details
+  ));
 }
 
 function* runLogInRequest() {
@@ -147,7 +158,10 @@ function* runLogInRequest() {
   } else {
     const status = error.response.status;
     status === 401 ? yield put(push('/auth')) : yield put(push('/error'));
-    yield put(failureFetch(error));
+    yield put(failureFetch(
+      error.response.data.message,
+      error.response.data.details
+    ));
   }
 }
 

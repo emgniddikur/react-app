@@ -35,6 +35,7 @@ const App = ({isLoggedIn, message}) => {
                 ({match}) => <Edit itemId={match.params.id}/>
               }
             />
+            <Route component={ErrorPage}/>
           </Switch>
         </Fragment>
       }

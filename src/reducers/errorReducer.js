@@ -10,8 +10,8 @@ export const errorReducer = (
   switch (action.type) {
     case FAILURE_FETCH:
       return {
-        message: action.payload.error.response.data.message,
-        details: action.payload.error.response.data.details
+        message: action.payload.message,
+        details: action.payload.details
       };
     case LOCATION_CHANGE:
       return {
