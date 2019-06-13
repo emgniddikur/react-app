@@ -7,6 +7,7 @@ import LogOutButton from "../components/buttons/LogOutButton";
 import {makeStyles} from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import SearchForm from "../components/forms/SearchForm";
+import {ToAuthButton} from "../components/buttons/ToAuthButton";
 
 const useStyles = makeStyles(theme => ({
   '@global': {
@@ -47,13 +48,14 @@ const Nav = ({history, isLoggedIn}) => {
             商品管理アプリ
           </Typography>
           {
-            isLoggedIn &&
-            <Fragment>
-              <SearchForm history={history}/>
-              <ToIndexButton history={history} className={classes.button}/>
-              <ToNewButton history={history} className={classes.button}/>
-              <LogOutButton className={classes.button}/>
-            </Fragment>
+            isLoggedIn ?
+              <Fragment>
+                <SearchForm history={history}/>
+                <ToIndexButton history={history} className={classes.button}/>
+                <ToNewButton history={history} className={classes.button}/>
+                <LogOutButton className={classes.button}/>
+              </Fragment> :
+              <ToAuthButton history={history} className={classes.button}/>
           }
         </Toolbar>
       </AppBar>
