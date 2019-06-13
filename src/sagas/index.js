@@ -141,7 +141,7 @@ function* processAfterError(error) {
   const isLoggedIn = yield select(getIsLoggedIn);
   if (status === 401 && isLoggedIn) {
     yield runLogOutRequest();
-  } else if (status === 404 || status === 500) {
+  } else if (status >= 404) {
     yield put(push('/error'));
   }
   yield put(failureFetch(
