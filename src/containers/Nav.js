@@ -65,6 +65,6 @@ const Nav = ({history, isLoggedIn}) => {
 
 export default connect(
   state => ({
-    isLoggedIn: state.loginReducer.isLoggedIn
+    isLoggedIn: state.logInReducer.isLoggedIn
   })
 )(Nav);

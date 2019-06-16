@@ -30,7 +30,7 @@ export const createStore = history => {
       routerReducer,
       loadingReducer,
       errorReducer,
-      loginReducer: logInReducer
+      logInReducer
     }),
     composeEnhancers(
       applyMiddleware(

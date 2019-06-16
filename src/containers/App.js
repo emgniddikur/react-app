@@ -46,7 +46,7 @@ const App = ({isLoggedIn, message}) => {
 
 export default connect(
   state => ({
-    isLoggedIn: state.loginReducer.isLoggedIn,
+    isLoggedIn: state.logInReducer.isLoggedIn,
     message: state.errorReducer.message
   })
 )(App);
