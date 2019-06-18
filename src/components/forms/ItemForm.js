@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import {makeStyles} from '@material-ui/core/styles';
-import {ItemImage} from "../ItemImage";
+import no_image from "../../images/no_image.jpeg";
 
 export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputPrice, inputImageSrc, createRequest, updateRequest}) => {
   const handleFileChange = e => {
@@ -45,6 +45,10 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
         padding: theme.spacing(3),
       },
     },
+    image: {
+      height: 100,
+      objectFit: "contain"
+    },
     inputFileBtnHide: {
       opacity: 0,
       appearance: "none",
@@ -67,7 +71,7 @@ export const ItemForm = ({itemId, formItem, inputTitle, inputDescription, inputP
               {itemId ? "編集" : "新規登録"}
             </Typography>
             <Button fullWidth component="label">
-              <ItemImage imageSrc={formItem.imageSrc}/>
+              <img src={formItem.imageSrc || no_image} alt="商品画像" className={classes.image}/>
               <input
                 id="image-src"
                 type="file"

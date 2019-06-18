@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {ToEditButton} from "./buttons/ToEditButton";
 import DeleteButton from "./buttons/DeleteButton";
-import {ItemImage} from "./ItemImage";
+import no_image from "../images/no_image.jpeg";
 
 export const ItemList = ({history, items}) => {
   const useStyles = makeStyles(theme => ({
@@ -20,6 +20,10 @@ export const ItemList = ({history, items}) => {
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
+    },
+    image: {
+      height: 100,
+      objectFit: "contain"
     },
     cardContent: {
       flexGrow: 1,
@@ -37,7 +41,7 @@ export const ItemList = ({history, items}) => {
               return (
                 <Grid item key={item.id} xs={12} sm={6} md={4}>
                   <Card className={classes.card}>
-                    <ItemImage imageSrc={item.imageSrc}/>
+                    <img src={item.imageSrc || no_image} alt="商品画像" className={classes.image}/>
                     <CardContent className={classes.cardContent}>
                       <Typography gutterBottom variant="h5" component="h2">
                         {item.title}
