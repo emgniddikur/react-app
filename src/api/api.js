@@ -1,10 +1,9 @@
 import axios from 'axios';
-
-const baseUrl = 'http://localhost:8080/api/items';
+import {restApiUrl} from '../config';
 
 export const fetchIndex = authToken => {
   return axios
-    .get(baseUrl, {
+    .get(restApiUrl, {
       headers: {
         authToken
       }
@@ -20,7 +19,7 @@ export const fetchIndex = authToken => {
 
 export const fetchCreate = (authToken, formItem) => {
   return axios
-    .post(baseUrl, formItem, {
+    .post(restApiUrl, formItem, {
       headers: {
         authToken
       }
@@ -36,7 +35,7 @@ export const fetchCreate = (authToken, formItem) => {
 
 export const fetchUpdate = (id, authToken, formItem) => {
   return axios
-    .put(`${baseUrl}/${id}`, formItem, {
+    .put(`${restApiUrl}/${id}`, formItem, {
       headers: {
         authToken
       }
@@ -52,7 +51,7 @@ export const fetchUpdate = (id, authToken, formItem) => {
 
 export const fetchDelete = (id, authToken) => {
   return axios
-    .delete(`${baseUrl}/${id}`, {
+    .delete(`${restApiUrl}/${id}`, {
       headers: {
         authToken
       }
@@ -64,7 +63,7 @@ export const fetchDelete = (id, authToken) => {
 
 export const fetchSearch = (keyword, authToken) => {
   return axios
-    .get(`${baseUrl}/search?keyword=${keyword}`, {
+    .get(`${restApiUrl}/search?keyword=${keyword}`, {
       headers: {
         authToken
       }
