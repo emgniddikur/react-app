@@ -1,12 +1,21 @@
+import {createBrowserHistory} from "history";
+import {createStore} from "./store/createStore";
+import {render} from 'react-dom';
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {Provider} from 'react-redux';
+import {ConnectedRouter} from "react-router-redux";
+import App from "./containers/App";
+import {Route} from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const history = createBrowserHistory();
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+const store = createStore(history);
+
+render(
+  <Provider store={store}>
+    <ConnectedRouter history={history}>
+      <Route component={App}/>
+    </ConnectedRouter>
+  </Provider>,
+  document.getElementById('root')
+);
