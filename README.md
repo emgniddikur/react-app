@@ -1,8 +1,5 @@
 Create React Appコマンドを実行してアプリケーションを作成。
 
-## コンポーネント図、データフロー図 
-[ここをクリック](https://www.draw.io/?state=%7B%22ids%22:%5B%221Mopynv8m9mjoLCUTw6EjmkV4LyIG_ADQ%22%5D,%22action%22:%22open%22,%22userId%22:%22100742367029514067037%22%7D#G1Mopynv8m9mjoLCUTw6EjmkV4LyIG_ADQ)
-
 ## 仕様した技術要素
 - @babel/runtime: 7.4.4
 - @clarketm/saga-monitor 2.0.1
