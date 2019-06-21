@@ -1,7 +1,13 @@
-import {AUTH_REQUEST, INDEX_REQUEST, LOG_IN_REQUEST, SEARCH_REQUEST} from "../constants/requests";
-import {SET_ITEMS, SET_SEARCH_RESULTS} from "../constants/items";
-import {FAILURE_FETCH} from "../constants/errors";
-import {SUCCESS_LOG_IN} from "../constants/logIn";
+import {
+  AUTH_REQUEST,
+  FAILURE_FETCH,
+  INDEX_REQUEST,
+  LOG_IN_REQUEST,
+  SEARCH_REQUEST,
+  SET_ITEMS,
+  SET_SEARCH_RESULTS,
+  SUCCESS_LOG_IN
+} from "../actionTypes";
 
 export const loadingReducer = (state = {isLoading: false}, action) => {
   switch (action.type) {

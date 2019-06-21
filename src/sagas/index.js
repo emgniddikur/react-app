@@ -8,8 +8,9 @@ import {
   LOG_IN_REQUEST,
   LOG_OUT_REQUEST,
   SEARCH_REQUEST,
+  SUCCESS_LOG_IN,
   UPDATE_REQUEST
-} from "../constants/requests";
+} from "../actionTypes";
 import * as API from "../api/api";
 import {
   createItem,
@@ -25,7 +26,6 @@ import {indexRequest, logInRequest, searchRequest} from "../actions/requests";
 import {initialItemState} from "../reducers/initialItemState";
 import {failureFetch} from "../actions/errors";
 import {successLogIn, successLogOut} from "../actions/logIns";
-import {SUCCESS_LOG_IN} from "../constants/logIn";
 
 function* runSearchRequest(action) {
   const keyword = action.payload.keyword;

@@ -1,2 +1,0 @@
-export const SUCCESS_LOG_IN = 'SUCCESS_LOG_IN';
-export const SUCCESS_LOG_OUT = 'SUCCESS_LOG_OUT';

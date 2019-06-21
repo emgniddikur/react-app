@@ -1,4 +1,4 @@
-import {FAILURE_FETCH} from "../constants/errors";
+import {FAILURE_FETCH} from "../actionTypes";
 
 export const failureFetch = (message, details) => ({
   type: FAILURE_FETCH,

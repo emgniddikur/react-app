@@ -11,7 +11,7 @@ import {
   SET_ITEMS,
   SET_SEARCH_RESULTS,
   UPDATE_ITEM
-} from "../constants/items";
+} from "../actionTypes";
 
 export const itemReducer = (state = initialItemState, action) => {
   switch (action.type) {

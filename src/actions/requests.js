@@ -7,7 +7,7 @@ import {
   LOG_OUT_REQUEST,
   SEARCH_REQUEST,
   UPDATE_REQUEST
-} from "../constants/requests";
+} from "../actionTypes";
 
 export const logInRequest = () => ({
   type: LOG_IN_REQUEST

@@ -10,7 +10,7 @@ import {
   SET_ITEMS,
   SET_SEARCH_RESULTS,
   UPDATE_ITEM
-} from "../constants/items";
+} from "../actionTypes";
 
 export const setItems = items => ({
   type: SET_ITEMS,

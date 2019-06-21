@@ -1,4 +1,4 @@
-import {FAILURE_FETCH} from "../constants/errors";
+import {FAILURE_FETCH} from "../actionTypes";
 import {LOCATION_CHANGE} from "react-router-redux";
 
 export const errorReducer = (
